@@ -1,0 +1,1391 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>L'Atelier des Cordes | Guitare Moderne & Studio de Production à Montpellier</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="École de guitare moderne & studio pour enfants et ados (7-17 ans) à Montpellier (Pompignane) et à domicile. Zéro solfège rébarbatif, session studio trimestrielle et sortie sur Spotify. Fondé par Alexandre Herbin (blvckbeats808).">
+  <meta name="keywords" content="cours guitare Montpellier, cours guitare enfant Montpellier, cours guitare ado Montpellier, studio musique enfant Montpellier, cours guitare Pompignane, cours guitare Castelnau le Lez, Alexandre Herbin, blvckbeats808">
+  <meta name="author" content="Alexandre Herbin - L'Atelier des Cordes">
+  
+  <!-- OpenGraph (WhatsApp, Facebook, iMessage preview) -->
+  <meta property="og:title" content="L'Atelier des Cordes — Guitare Moderne & Studio pour Enfants & Ados">
+  <meta property="og:description" content="Vos enfants sont nés pour créer, pas pour scroller. Cours de guitare immersifs à Montpellier (Pompignane) & à domicile. Enregistrement studio et sortie sur Spotify inclus.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="fr_FR">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+
+  <!-- Fontshare: Clash Display (Le standard des studios de création et labels indé) & Google Fonts: DM Sans + Space Grotesk -->
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['"Clash Display"', 'Space Grotesk', 'sans-serif'],
+            sans: ['"DM Sans"', 'system-ui', '-apple-system', 'sans-serif'],
+            mono: ['Space Grotesk', 'monospace'],
+          },
+          colors: {
+            brand: {
+              magenta: '#FF007F',
+              pink: '#FF1493',
+              orange: '#FF5E00',
+              amber: '#FF9900',
+              purple: '#8B5CF6',
+              cyan: '#00F59B',
+              dark: '#07080D',
+              surface: '#0F121C',
+              card: '#181C28',
+              border: '#2A3044'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/custom.css">
+
+  <!-- Schema.org JSON-LD Structured Data for Local SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MusicSchool",
+    "name": "L'Atelier des Cordes",
+    "description": "École de guitare moderne et studio de production pour enfants et adolescents de 7 à 17 ans à Montpellier. Projet signature Spotify, pratique immédiate sans solfège imposé.",
+    "founder": {
+      "@type": "Person",
+      "name": "Alexandre Herbin",
+      "alternateName": ["blvckbeats808", "Herbo"],
+      "jobTitle": "Producteur Musical & Fondateur",
+      "sameAs": "https://www.youtube.com/watch?v=lqV26trVM90"
+    },
+    "telephone": "+33616392658",
+    "email": "blvckbeats808@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Quartier de la Pompignane",
+      "addressLocality": "Montpellier",
+      "postalCode": "34000",
+      "addressRegion": "Hérault",
+      "addressCountry": "FR"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "43.616",
+      "longitude": "3.898"
+    },
+    "areaServed": [
+      "Montpellier",
+      "Pompignane",
+      "Castelnau-le-Lez",
+      "Clapiers",
+      "Le Crès",
+      "Lattes",
+      "Pérols"
+    ],
+    "priceRange": "65€ - 130€ / mois",
+    "openingHours": "Mo,Tu,We,Th,Fr,Sa 09:00-20:00"
+  }
+  </script>
+</head>
+
+<body class="bg-mesh-dark text-zinc-100 font-sans antialiased selection:bg-brand-magenta selection:text-white">
+
+  <!-- 1. BANDEAU SUPÉRIEUR D'URGENCE & RARETÉ -->
+  <aside aria-label="Alerte places disponibles" class="sticky top-0 z-50 bg-gradient-to-r from-brand-magenta via-brand-orange to-brand-purple text-white text-xs sm:text-sm font-medium py-2 px-4 shadow-lg backdrop-blur-md">
+    <div class="max-w-6xl mx-auto flex items-center justify-between">
+      <div class="flex items-center gap-2 mx-auto sm:mx-0">
+        <span class="inline-block w-2.5 h-2.5 rounded-full bg-white pulse-beacon"></span>
+        <span>
+          <strong>Session Trimestrielle en cours :</strong> Plus que <span class="underline font-bold quota-studio-count">2 places</span> au Studio Pompignane. Cours d'essai gratuit sur dossier.
+        </span>
+      </div>
+      <a href="#candidature" class="hidden sm:inline-flex items-center gap-1 bg-black/40 hover:bg-black/60 text-white font-mono text-xs uppercase px-3 py-1 rounded-full transition-all border border-white/20">
+        Postuler <span>&rarr;</span>
+      </a>
+    </div>
+  </aside>
+
+  <!-- 2. NAVIGATION / HEADER PRINCIPAL -->
+  <header class="glass-panel sticky top-[37px] z-40 border-b border-brand-border">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-magenta to-brand-orange p-0.5 shadow-lg group-hover:scale-105 transition-transform">
+          <div class="w-full h-full bg-brand-dark rounded-[10px] flex items-center justify-center">
+            <svg class="w-6 h-6 text-brand-magenta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2L19 21L12 17L5 21L12 2Z" />
+              <circle cx="12" cy="11" r="2" fill="currentColor" />
+            </svg>
+          </div>
+        </div>
+        <div>
+          <span class="font-display font-extrabold text-xl tracking-tight text-white block">
+            L'Atelier <span class="bg-gradient-to-r from-brand-magenta to-brand-orange bg-clip-text text-transparent">des Cordes</span>
+          </span>
+          <span class="text-[10px] uppercase font-mono tracking-widest text-zinc-400 block -mt-1">
+            Studio & Guitare • Montpellier
+          </span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden lg:flex items-center gap-8 text-sm font-medium text-zinc-300">
+        <a href="#methode" class="hover:text-brand-magenta transition-colors">La Méthode</a>
+        <a href="#projet-spotify" class="hover:text-brand-magenta transition-colors">Projet Spotify</a>
+        <a href="#comparateur-son" class="hover:text-brand-orange transition-colors">Le Son Studio</a>
+        <a href="#formules" class="hover:text-brand-magenta transition-colors">Formules</a>
+        <a href="#fondateur" class="hover:text-brand-orange transition-colors">Alexandre Herbin</a>
+        <a href="#tarifs" class="hover:text-brand-magenta transition-colors">Tarifs & Quotas</a>
+      </nav>
+
+      <!-- Desktop CTA, Social & WhatsApp Direct -->
+      <div class="hidden sm:flex items-center gap-3">
+        <!-- Quick Socials Alexandre -->
+        <a href="https://www.instagram.com/__alexblacki/" target="_blank" rel="noopener noreferrer" title="Instagram @__alexblacki" class="p-2 rounded-lg bg-zinc-900/80 hover:bg-zinc-800 text-zinc-300 hover:text-pink-400 border border-zinc-800 transition-colors">
+          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </a>
+        <a href="https://www.youtube.com/@alkapoze" target="_blank" rel="noopener noreferrer" title="YouTube @alkapoze (Prods guitare)" class="p-2 rounded-lg bg-zinc-900/80 hover:bg-zinc-800 text-zinc-300 hover:text-red-400 border border-zinc-800 transition-colors">
+          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </a>
+
+        <a href="https://wa.me/33616392658?text=Bonjour%20Alexandre,%20je%20souhaite%20des%20renseignements%20pour%20les%20cours%20de%20guitare%20de%20mon%20enfant" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-xs font-mono text-zinc-300 hover:text-brand-cyan transition-colors px-3 py-2 rounded-lg bg-zinc-900/60 border border-zinc-800">
+          <span class="w-2 h-2 rounded-full bg-brand-cyan"></span>
+          06 16 39 26 58
+        </a>
+        <a href="#candidature" class="relative group overflow-hidden rounded-xl p-px font-semibold text-xs uppercase tracking-wider text-white shadow-lg">
+          <span class="absolute inset-0 bg-gradient-to-r from-brand-magenta via-brand-orange to-brand-purple group-hover:opacity-90 transition-opacity"></span>
+          <span class="relative block px-4 py-2.5 rounded-[11px] bg-brand-dark/40 backdrop-blur-sm group-hover:bg-transparent transition-colors">
+            Déposer une candidature
+          </span>
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button id="mobile-menu-btn" aria-label="Ouvrir le menu" class="lg:hidden p-2 text-zinc-300 hover:text-white rounded-lg bg-zinc-900/80 border border-zinc-800">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div id="mobile-menu-drawer" class="fixed inset-0 z-50 bg-brand-dark/95 backdrop-blur-xl hidden flex flex-col justify-between p-6">
+    <div class="flex items-center justify-between border-b border-zinc-800 pb-4">
+      <span class="font-display font-bold text-lg text-white">L'Atelier des Cordes</span>
+      <button id="mobile-menu-close" aria-label="Fermer le menu" class="p-2 text-zinc-400 hover:text-white">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+    <nav class="flex flex-col gap-6 text-xl font-display font-semibold py-8">
+      <a href="#methode" class="mobile-nav-link text-zinc-300 hover:text-brand-magenta">La Méthode</a>
+      <a href="#projet-spotify" class="mobile-nav-link text-zinc-300 hover:text-brand-magenta">L'Expérience Spotify</a>
+      <a href="#comparateur-son" class="mobile-nav-link text-zinc-300 hover:text-brand-orange">Le Son Studio (A/B)</a>
+      <a href="#formules" class="mobile-nav-link text-zinc-300 hover:text-brand-magenta">Nos Formules</a>
+      <a href="#fondateur" class="mobile-nav-link text-zinc-300 hover:text-brand-orange">Alexandre Herbin</a>
+      <a href="#tarifs" class="mobile-nav-link text-zinc-300 hover:text-brand-magenta">Tarifs & Quotas</a>
+    </nav>
+    <div class="flex flex-col gap-3 pt-6 border-t border-zinc-800">
+      <div class="grid grid-cols-3 gap-2">
+        <a href="https://www.instagram.com/__alexblacki/" target="_blank" rel="noopener noreferrer" class="py-2.5 rounded-xl bg-zinc-900 border border-zinc-700 text-center text-xs font-mono text-zinc-200 hover:text-pink-400 font-bold">
+          📸 Instagram
+        </a>
+        <a href="https://www.youtube.com/@alkapoze" target="_blank" rel="noopener noreferrer" class="py-2.5 rounded-xl bg-zinc-900 border border-zinc-700 text-center text-xs font-mono text-zinc-200 hover:text-red-400 font-bold">
+          ▶ YouTube
+        </a>
+        <a href="https://open.spotify.com/intl-fr/track/5J2Dx5tuupjgsaWCSnJFGn?si=00b9445e3521482c" target="_blank" rel="noopener noreferrer" class="py-2.5 rounded-xl bg-zinc-900 border border-zinc-700 text-center text-xs font-mono text-zinc-200 hover:text-emerald-400 font-bold">
+          🎧 Spotify
+        </a>
+      </div>
+      <a href="https://wa.me/33616392658" target="_blank" class="w-full py-3 text-center bg-zinc-900 border border-zinc-700 text-brand-cyan rounded-xl font-mono text-sm font-bold">
+        💬 WhatsApp : 06 16 39 26 58
+      </a>
+      <a href="#candidature" class="mobile-nav-link w-full py-3.5 text-center bg-gradient-to-r from-brand-magenta to-brand-orange text-white rounded-xl font-bold uppercase text-sm shadow-xl">
+        Candidater au cours d'essai
+      </a>
+    </div>
+  </div>
+
+  <main>
+    <!-- SECTION 1 : HERO HEADER (SPLIT-SCREEN ASYMÉTRIQUE STUDIO) -->
+    <section class="relative pt-8 pb-16 sm:pt-16 sm:pb-24 overflow-hidden">
+      <!-- Glow ambient lights subtle -->
+      <div class="absolute top-1/4 -left-20 w-[500px] h-[350px] bg-brand-magenta/15 blur-[140px] pointer-events-none rounded-full"></div>
+      <div class="absolute top-1/3 -right-20 w-[500px] h-[350px] bg-brand-orange/15 blur-[140px] pointer-events-none rounded-full"></div>
+
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+          
+          <!-- COLONNE GAUCHE (7 COLONNES) : MANIFESTE, TITRE & ACTIONS -->
+          <div class="lg:col-span-7 text-left">
+            
+            <!-- TAG LOCALISATION TECHNIQUE -->
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-brand-magenta/40 bg-brand-magenta/10 text-brand-magenta font-mono text-xs font-bold uppercase tracking-wider mb-6">
+              <span class="w-2 h-2 rounded-full bg-brand-magenta animate-ping"></span>
+              <span>Montpellier Pompignane</span>
+              <span class="text-zinc-500">•</span>
+              <span>École & Studio de Guitare</span>
+            </div>
+
+            <!-- LE MANIFESTE (PUNCHLINE) -->
+            <div class="mb-5 p-4 rounded-2xl bg-zinc-900/80 border-l-4 border-brand-magenta border-y border-r border-zinc-800 shadow-xl">
+              <span class="font-mono text-xs font-black uppercase tracking-widest text-brand-orange block mb-1">
+                ★ Manifeste Éducatif & Artistique
+              </span>
+              <p class="font-display font-black text-xl sm:text-2xl text-white tracking-tight leading-snug">
+                « Vos enfants sont nés pour créer, <span class="bg-gradient-to-r from-brand-magenta to-brand-orange bg-clip-text text-transparent underline decoration-brand-orange">pas pour scroller.</span> »
+              </p>
+            </div>
+
+            <!-- TITRE H1 PRINCIPAL (NON CENTRÉ, TRÉBUCHANT & PUISSANT) -->
+            <h1 class="font-display font-black text-4xl sm:text-5xl lg:text-6xl text-white leading-[1.06] tracking-tight mb-6">
+              La guitare moderne <br>
+              <span class="bg-gradient-to-r from-brand-magenta via-brand-orange to-brand-purple bg-clip-text text-transparent">
+                & le studio de production.
+              </span>
+            </h1>
+
+            <!-- SOUS-TITRE DE VALEUR -->
+            <p class="text-base sm:text-lg text-zinc-200 leading-relaxed font-normal mb-8 max-w-xl">
+              Pour enfants et adolescents (7 à 17 ans). Pratique immédiate sur leurs morceaux préférés, zéro théorie rébarbative, et <strong class="text-white font-bold underline decoration-brand-magenta decoration-2">sortie officielle d'un premier titre sur Spotify</strong> chaque trimestre. Au Studio (Pompignane) ou directement à votre domicile.
+            </p>
+
+            <!-- BOUTONS D'ACTION DIRECTS -->
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mb-10">
+              <a href="#candidature" class="px-8 py-4 rounded-xl font-black font-mono text-sm uppercase tracking-wider bg-gradient-to-r from-brand-magenta via-brand-orange to-brand-purple text-white shadow-2xl hover:scale-105 transition-all text-center box-glow-magenta">
+                Postuler au cours d'essai offert &rarr;
+              </a>
+              <a href="https://wa.me/33616392658?text=Bonjour%20Alexandre,%20je%20souhaite%20des%20renseignements%20pour%20les%20cours%20de%20guitare" target="_blank" rel="noopener noreferrer" class="px-6 py-4 rounded-xl font-bold font-mono text-sm bg-zinc-800/90 hover:bg-zinc-700 text-brand-cyan border border-zinc-700 transition-all flex items-center justify-center gap-2">
+                <span>💬</span> 06 16 39 26 58
+              </a>
+            </div>
+
+            <!-- LIGNE TECHNIQUE D'AUTORITÉ (ÉPURÉE, FAÇON HARDWARE STUDIO) -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t border-zinc-800 text-xs font-mono">
+              <div class="border-l-2 border-brand-magenta pl-3">
+                <span class="text-white font-black block text-base">14 ANS</span>
+                <span class="text-zinc-400 text-[11px] block">D'EXPÉRIENCE GUITARE</span>
+              </div>
+              <div class="border-l-2 border-brand-orange pl-3">
+                <span class="text-white font-black block text-base">NASHVILLE</span>
+                <span class="text-zinc-400 text-[11px] block">PRODS VENDUES USA</span>
+              </div>
+              <div class="border-l-2 border-brand-cyan pl-3">
+                <span class="text-white font-black block text-base">SPOTIFY</span>
+                <span class="text-zinc-400 text-[11px] block">SORTIE TRIMESTRIELLE</span>
+              </div>
+              <div class="border-l-2 border-brand-purple pl-3">
+                <span class="text-white font-black block text-base">12 PLACES</span>
+                <span class="text-zinc-400 text-[11px] block">MAX / TRIMESTRE</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- COLONNE DROITE (5 COLONNES) : LE STUDIO EN DIRECT & L'ARTISTE -->
+          <div class="lg:col-span-5">
+            <div class="glass-card p-6 rounded-3xl border border-zinc-700 bg-brand-surface relative shadow-2xl">
+              
+              <!-- Bandeau DAW Supérieur -->
+              <div class="flex items-center justify-between border-b border-zinc-800 pb-3 mb-4 text-xs font-mono">
+                <div class="flex items-center gap-2">
+                  <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                  <span class="text-zinc-200 font-bold uppercase tracking-wider">Studio Pompignane</span>
+                </div>
+                <span class="text-brand-magenta font-bold">● REC LIVE 24-bit</span>
+              </div>
+
+              <!-- Cadre Média / Artiste Studio Alexandre Herbin -->
+              <div class="aspect-[4/3] rounded-2xl bg-gradient-to-tr from-brand-magenta/20 via-zinc-900 to-brand-orange/20 border border-zinc-700/80 p-5 flex flex-col justify-between relative overflow-hidden group">
+                
+                <!-- Support Photo réelle (si alexandre.jpg déposé dans assets/) -->
+                <img src="assets/alexandre.jpg" alt="Alexandre Herbin" class="w-full h-full object-cover absolute inset-0 z-0 opacity-40 group-hover:opacity-60 transition-opacity" onerror="this.style.display='none';">
+
+                <!-- Badge Don Herbo / blvckbeats808 -->
+                <div class="flex justify-between items-start z-10">
+                  <span class="px-3 py-1 rounded-full bg-black/80 backdrop-blur-md border border-white/20 text-xs font-mono text-white font-bold">
+                    Alexandre Herbin
+                  </span>
+                  <span class="px-2.5 py-1 rounded-full bg-brand-magenta/20 text-brand-magenta border border-brand-magenta/40 text-[11px] font-mono font-bold">
+                    blvckbeats808
+                  </span>
+                </div>
+
+                <!-- Visuel Guitare & Onde Sonore centrale -->
+                <div class="my-auto text-center z-10">
+                  <div class="w-20 h-20 mx-auto rounded-full bg-gradient-to-tr from-brand-magenta to-brand-orange p-1 shadow-2xl mb-3 group-hover:scale-105 transition-transform">
+                    <div class="w-full h-full rounded-full bg-brand-dark flex items-center justify-center text-3xl">
+                      🎸
+                    </div>
+                  </div>
+                  <h3 class="font-display font-bold text-xl text-white">Directeur Musical & Guitariste</h3>
+                  <p class="text-xs text-brand-orange font-mono font-medium mt-1">26 ans • Compositeur pour artistes US & Europe</p>
+                </div>
+
+                <!-- Mini waveform animée en bas -->
+                <div class="z-10 flex items-center justify-between bg-black/60 backdrop-blur-md rounded-xl p-2.5 border border-zinc-800 text-xs font-mono">
+                  <span class="text-zinc-300 flex items-center gap-2">
+                    <span class="text-brand-magenta">▶</span> Beat Nashville 808
+                  </span>
+                  <a href="https://youtu.be/925-MVwqzmA?list=RD925-MVwqzmA" target="_blank" rel="noopener noreferrer" class="text-brand-cyan hover:underline text-[11px]">
+                    Écouter sur YouTube &rarr;
+                  </a>
+                </div>
+              </div>
+
+              <!-- Alerte de contingentement temps réel -->
+              <div class="mt-4 p-3.5 rounded-xl bg-gradient-to-r from-brand-magenta/15 to-brand-orange/15 border border-brand-orange/30 flex items-center justify-between text-xs font-mono">
+                <div class="flex items-center gap-2">
+                  <span class="text-base">⚠️</span>
+                  <span class="text-zinc-200"><strong>Session en cours :</strong> 2 places studio</span>
+                </div>
+                <a href="#candidature" class="text-brand-orange hover:text-white font-bold underline">
+                  Réserver l'essai
+                </a>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2 : LA MÉTHODE DU LABO -->
+    <section id="methode" class="py-20 sm:py-28 border-t border-brand-border relative">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="text-center max-w-2xl mx-auto mb-16">
+          <span class="text-sm font-mono font-bold uppercase tracking-wider text-brand-magenta block mb-2">
+            Pédagogie Active & Décomplexée
+          </span>
+          <h2 class="font-display font-black text-3xl sm:text-5xl text-white tracking-tight">
+            Zéro solfège rébarbatif. <br>
+            <span class="bg-gradient-to-r from-brand-magenta to-brand-orange bg-clip-text text-transparent">
+              Le plaisir dès la première note.
+            </span>
+          </h2>
+          <p class="text-zinc-200 text-base sm:text-lg mt-4 font-normal leading-relaxed">
+            Le modèle classique des conservatoires fait fuir 70% des enfants après la première année. À L'Atelier des Cordes, nous inversons la règle : on joue d'abord, on comprend ensuite.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <!-- Carte 1 -->
+          <div class="glass-card p-8 rounded-2xl relative overflow-hidden group border border-zinc-700 bg-brand-surface/90">
+            <div class="w-14 h-14 rounded-2xl bg-brand-magenta/15 border border-brand-magenta/40 flex items-center justify-center text-brand-magenta text-3xl mb-6 group-hover:scale-110 transition-transform">
+              🎸
+            </div>
+            <h3 class="font-display font-bold text-2xl text-white mb-3">
+              Leur musique, pas celle des manuels
+            </h3>
+            <p class="text-base text-zinc-200 leading-relaxed font-normal">
+              L'élève choisit ses morceaux : intros de mangas/animes (Naruto, Demon Slayer), musiques de jeux vidéo (Zelda, Mario), pop actuelle (Taylor Swift, Billie Eilish), rock légendaire (Nirvana, AC/DC) ou mélodies acoustiques drill/rap.
+            </p>
+            <div class="mt-6 pt-4 border-t border-zinc-700 text-sm font-mono font-bold text-brand-magenta">
+              ✓ Apprentissage direct des riffs cultes
+            </div>
+          </div>
+
+          <!-- Carte 2 -->
+          <div class="glass-card p-8 rounded-2xl relative overflow-hidden group border border-zinc-700 bg-brand-surface/90">
+            <div class="w-14 h-14 rounded-2xl bg-brand-orange/15 border border-brand-orange/40 flex items-center justify-center text-brand-orange text-3xl mb-6 group-hover:scale-110 transition-transform">
+              🧠
+            </div>
+            <h3 class="font-display font-bold text-2xl text-white mb-3">
+              L'alternative saine aux écrans
+            </h3>
+            <p class="text-base text-zinc-200 leading-relaxed font-normal">
+              Faire de la musique stimule la motricité fine, la concentration et la mémoire de travail. Nous offrons à vos enfants une source de dopamine naturelle et valorisante, à des années-lumière du scrolling passif.
+            </p>
+            <div class="mt-6 pt-4 border-t border-zinc-700 text-sm font-mono font-bold text-brand-orange">
+              ✓ Concentration & persévérance renforcées
+            </div>
+          </div>
+
+          <!-- Carte 3 -->
+          <div class="glass-card p-8 rounded-2xl relative overflow-hidden group border border-zinc-700 bg-brand-surface/90">
+            <div class="w-14 h-14 rounded-2xl bg-brand-purple/15 border border-brand-purple/40 flex items-center justify-center text-brand-purple text-3xl mb-6 group-hover:scale-110 transition-transform">
+              🎧
+            </div>
+            <h3 class="font-display font-bold text-2xl text-white mb-3">
+              Profs jeunes, actifs & pédagogues
+            </h3>
+            <p class="text-base text-zinc-200 leading-relaxed font-normal">
+              Fini le professeur distant d'une autre génération. Alexandre et son équipe de musiciens partenaires parlent le même langage que les jeunes, dédramatisent l'erreur et créent un climat de confiance immédiat.
+            </p>
+            <div class="mt-6 pt-4 border-t border-zinc-700 text-sm font-mono font-bold text-brand-purple">
+              ✓ Écoute, bienveillance & rigueur moderne
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3 : LE PROJET SIGNATURE SPOTIFY & SIMULATEUR -->
+    <section id="projet-spotify" class="py-20 sm:py-28 border-t border-brand-border bg-brand-surface/50 relative">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="text-center max-w-2xl mx-auto mb-16">
+          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 font-mono text-xs uppercase font-bold mb-3">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+            Exclusivité L'Atelier des Cordes
+          </div>
+          <h2 class="font-display font-black text-3xl sm:text-5xl text-white tracking-tight">
+            Le Projet Signature : <br>
+            <span class="bg-gradient-to-r from-brand-cyan via-emerald-400 to-brand-magenta bg-clip-text text-transparent">
+              De l'apprentissage à Spotify.
+            </span>
+          </h2>
+          <p class="text-zinc-200 text-base sm:text-lg mt-4 font-normal leading-relaxed">
+            À la fin de chaque trimestre, l'élève ne repart pas avec une simple note sur un carnet : il entre en studio, enregistre son morceau et le sort officiellement sur les plateformes de streaming mondiales.
+          </p>
+        </div>
+
+        <!-- 3 ÉTAPES DU PROJET -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+          <div class="glass-card p-6 sm:p-8 rounded-2xl border border-zinc-700 bg-brand-surface/90 relative">
+            <span class="font-mono text-5xl font-black text-zinc-700/60 absolute top-4 right-4">01</span>
+            <div class="text-brand-magenta font-mono font-bold text-xs uppercase mb-2">Mois 1 & 2</div>
+            <h3 class="font-display font-bold text-xl text-white mb-2">Préparation & Arrangements</h3>
+            <p class="text-sm text-zinc-200 leading-relaxed font-normal">
+              L'élève maîtrise son morceau note par note. Alexandre crée un arrangement d'accompagnement studio sur-mesure (batterie, basse, ambiance) digne d'une vraie production professionnelle.
+            </p>
+          </div>
+
+          <div class="glass-card p-6 sm:p-8 rounded-2xl border border-zinc-700 bg-brand-surface/90 relative">
+            <span class="font-mono text-5xl font-black text-zinc-700/60 absolute top-4 right-4">02</span>
+            <div class="text-brand-orange font-mono font-bold text-xs uppercase mb-2">Fin du 2ème Mois</div>
+            <h3 class="font-display font-bold text-xl text-white mb-2">Session Studio Réelle</h3>
+            <p class="text-sm text-zinc-200 leading-relaxed font-normal">
+              Prise de son en conditions studio à la Pompignane. Micros studio haute sensibilité, casques audio pro fermés avec limiteur sonore pour protéger l'audition fragile des enfants.
+            </p>
+          </div>
+
+          <div class="glass-card p-6 sm:p-8 rounded-2xl border border-zinc-700 bg-brand-surface/90 relative">
+            <span class="font-mono text-5xl font-black text-zinc-700/60 absolute top-4 right-4">03</span>
+            <div class="text-brand-cyan font-mono font-bold text-xs uppercase mb-2">Mois 3</div>
+            <h3 class="font-display font-bold text-xl text-white mb-2">Mix Pro & Release Spotify</h3>
+            <p class="text-sm text-zinc-200 leading-relaxed font-normal">
+              Mixé et masterisé avec la même exigence que les prods exportées aux USA. Le morceau sort sur Spotify, Apple Music & Deezer sous le label du Labo. Fichier MP3 Haute Fidélité remis aux parents.
+            </p>
+          </div>
+        </div>
+
+        <!-- SIMULATEUR INTERACTIF DE POCHETTE SPOTIFY -->
+        <div class="glass-panel p-6 sm:p-10 rounded-3xl border border-brand-magenta/40 max-w-4xl mx-auto box-glow-magenta bg-brand-surface">
+          <div class="text-center mb-8">
+            <h3 class="font-display font-bold text-2xl sm:text-3xl text-white mb-2">
+              ✨ Imaginez votre enfant sur Spotify
+            </h3>
+            <p class="text-sm sm:text-base text-zinc-200 font-normal">
+              Tapez son prénom ou pseudo pour générer un aperçu de son premier single :
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <!-- Formulaire de simulation -->
+            <div class="space-y-4">
+              <div>
+                <label class="block text-sm font-mono uppercase font-bold text-zinc-200 mb-1.5">Prénom ou Nom de scène de l'enfant</label>
+                <input id="mockup-artist-name" type="text" value="Maxime" placeholder="Ex: Léo, Sarah, Max..." class="w-full bg-zinc-900 border border-zinc-600 rounded-xl px-4 py-3 text-white text-base focus:outline-none focus:border-brand-magenta font-semibold">
+              </div>
+
+              <div>
+                <label class="block text-sm font-mono uppercase font-bold text-zinc-200 mb-1.5">Titre de son premier morceau</label>
+                <input id="mockup-track-title" type="text" value="Guitare Solo & 808" placeholder="Ex: First Riff, Horizon..." class="w-full bg-zinc-900 border border-zinc-600 rounded-xl px-4 py-3 text-white text-base focus:outline-none focus:border-brand-magenta font-semibold">
+              </div>
+
+              <div>
+                <label class="block text-sm font-mono uppercase font-bold text-zinc-200 mb-1.5">Style de la pochette</label>
+                <select id="mockup-genre-select" class="w-full bg-zinc-900 border border-zinc-600 rounded-xl px-4 py-3 text-white text-base focus:outline-none focus:border-brand-magenta">
+                  <option value="rock">🔥 Rock / Guitare Électrique</option>
+                  <option value="anime">🌸 Anime & Gaming (Lofi / OST)</option>
+                  <option value="drill">⚡ Drill Acoustique & Hip-Hop 808</option>
+                  <option value="pop">✨ Pop & Guitare Acoustique Moderne</option>
+                </select>
+              </div>
+
+              <div class="p-4 rounded-xl bg-zinc-900/80 border border-zinc-700 text-sm text-zinc-200 flex items-center gap-3">
+                <span class="text-emerald-400 text-xl">🔒</span>
+                <span>Protection des mineurs : diffusion sous prénom ou pseudonyme, avec décharge parentale officielle.</span>
+              </div>
+            </div>
+
+            <!-- Rendu Visuel Mockup Spotify avec Vinyle -->
+            <div class="relative flex items-center justify-center">
+              <!-- Vinyl disc in background -->
+              <div id="spotify-vinyl-disc" class="w-56 h-56 rounded-full bg-zinc-950 border-4 border-zinc-800 shadow-2xl absolute -right-4 sm:-right-8 animate-spin-slow flex items-center justify-center">
+                <div class="w-20 h-20 rounded-full bg-brand-dark border-2 border-brand-magenta/40 flex items-center justify-center">
+                  <div class="w-5 h-5 rounded-full bg-zinc-900 border border-zinc-700"></div>
+                </div>
+              </div>
+
+              <!-- Spotify Card Surface -->
+              <div class="w-64 sm:w-72 bg-zinc-900/90 rounded-2xl p-4 border border-zinc-800 shadow-2xl relative z-10 backdrop-blur-xl">
+                <!-- Artwork Cover -->
+                <div id="spotify-artwork-cover" class="w-full h-56 bg-gradient-to-br from-amber-600 via-red-600 to-purple-900 flex flex-col justify-between p-4 rounded-xl shadow-2xl relative overflow-hidden">
+                  <div class="flex justify-between items-center text-[10px] font-mono text-white/80 uppercase">
+                    <span>L'Atelier des Cordes</span>
+                    <span class="bg-black/40 px-2 py-0.5 rounded-full">Single 2026</span>
+                  </div>
+                  <div class="text-center my-auto">
+                    <span class="text-3xl block">🎸</span>
+                  </div>
+                  <div>
+                    <span class="text-[9px] font-mono text-white/70 block uppercase tracking-wider">Sortie Studio</span>
+                    <span class="text-xs font-bold text-white block">Montpellier Pompignane</span>
+                  </div>
+                </div>
+
+                <!-- Info Track -->
+                <div class="mt-4 flex items-center justify-between">
+                  <div class="overflow-hidden pr-2">
+                    <h4 id="spotify-display-title" class="text-sm font-bold text-white truncate">Guitare Solo & 808</h4>
+                    <p id="spotify-display-artist" class="text-xs text-zinc-400 font-mono truncate">Maxime (L'Atelier des Cordes)</p>
+                  </div>
+                  <button id="spotify-mock-play" class="w-9 h-9 rounded-full bg-emerald-500 hover:bg-emerald-400 text-black font-bold flex items-center justify-center transition-transform hover:scale-110 shadow-lg text-xs">
+                    ▶
+                  </button>
+                </div>
+
+                <!-- Spotify badge footer -->
+                <div class="mt-3 pt-3 border-t border-zinc-800/80 flex items-center justify-between text-[10px] text-zinc-400 font-mono">
+                  <span class="flex items-center gap-1.5 text-emerald-400 font-semibold">
+                    <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                      <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.498 17.306c-.216.353-.674.464-1.026.249-2.813-1.718-6.354-2.107-10.525-1.155-.403.092-.806-.157-.898-.56-.092-.403.158-.806.56-.898 4.568-1.044 8.487-.604 11.64 1.328.353.216.464.674.249 1.026zm1.468-3.262c-.272.441-.85.58-1.291.309-3.22-1.979-8.128-2.551-11.936-1.394-.499.151-1.031-.132-1.182-.631-.151-.499.132-1.031.631-1.182 4.354-1.321 9.771-.682 13.469 1.597.441.272.58.85.309 1.291zm.126-3.41c-3.86-2.292-10.224-2.503-13.889-1.39-.59.18-1.222-.154-1.401-.744-.18-.59.154-1.222.744-1.401 4.22-1.282 11.248-1.035 15.688 1.6c.529.314.704 1.002.39 1.531-.314.529-1.002.704-1.531.39z"/>
+                    </svg>
+                    Profil Officiel Spotify
+                  </span>
+                  <span>Trimestre 2026</span>
+                </div>
+        <!-- ENGAGEMENT OFFICIEL DU LABO : 1 TRIMESTRE = 1 SINGLE GARANTI (100% INCLUS) -->
+        <div class="mt-12 max-w-4xl mx-auto rounded-3xl p-6 sm:p-8 bg-gradient-to-r from-brand-surface via-brand-card to-brand-surface border-2 border-emerald-500/50 shadow-2xl relative overflow-hidden">
+          <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+            <div class="space-y-2 max-w-2xl">
+              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 font-mono text-xs font-bold uppercase">
+                <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                Promesse & Engagement Officiel
+              </div>
+              <h3 class="font-display font-black text-2xl sm:text-3xl text-white">
+                1 Trimestre = 1 Titre Officiel sur Spotify Garanti.
+              </h3>
+              <p class="text-sm sm:text-base text-zinc-200 leading-relaxed font-normal">
+                L'enregistrement micro studio, le mixage professionnel réalisé personnellement par Alexandre Herbin et la distribution officielle sur Spotify, Apple Music & Deezer sont <strong class="text-white font-bold underline decoration-emerald-400">100% inclus dans votre mensualité</strong>. Aucun supplément ni frais caché. À la fin de l'année scolaire, votre enfant a son propre <strong class="text-emerald-400 font-bold">EP 3 titres</strong> officiel en ligne !
+              </p>
+            </div>
+            <a href="#candidature" class="w-full md:w-auto px-6 py-4 rounded-xl font-black font-mono text-xs uppercase tracking-wider bg-emerald-500 hover:bg-emerald-400 text-black text-center transition-all shadow-xl hover:scale-105 whitespace-nowrap">
+              Réserver sa place &rarr;
+            </a>
+          </div>
+        </div>
+
+        <!-- LECTEUR OFFICIEL SPOTIFY DU TITRE D'ALEXANDRE HERBIN -->
+        <div class="mt-8 max-w-4xl mx-auto glass-panel p-6 sm:p-8 rounded-3xl border border-zinc-700 bg-brand-surface/90 shadow-2xl">
+          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-4">
+            <div>
+              <span class="text-xs font-mono font-bold text-emerald-400 uppercase tracking-wider block">
+                ★ Production Signature d'Alexandre Herbin sur Spotify
+              </span>
+              <h4 class="font-display font-bold text-xl text-white">
+                Écoutez la qualité sonore du studio
+              </h4>
+              <p class="text-xs text-zinc-300 font-mono mt-0.5">
+                Titre disponible sur Spotify • Enregistré & Produit par Alexandre Herbin
+              </p>
+            </div>
+            <a href="https://open.spotify.com/intl-fr/track/5J2Dx5tuupjgsaWCSnJFGn?si=00b9445e3521482c" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#1DB954] hover:bg-[#1aa34a] text-black font-mono text-xs font-bold uppercase transition-all shadow-lg hover:scale-105">
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.498 17.306c-.216.353-.674.464-1.026.249-2.813-1.718-6.354-2.107-10.525-1.155-.403.092-.806-.157-.898-.56-.092-.403.158-.806.56-.898 4.568-1.044 8.487-.604 11.64 1.328.353.216.464.674.249 1.026zm1.468-3.262c-.272.441-.85.58-1.291.309-3.22-1.979-8.128-2.551-11.936-1.394-.499.151-1.031-.132-1.182-.631-.151-.499.132-1.031.631-1.182 4.354-1.321 9.771-.682 13.469 1.597.441.272.58.85.309 1.291zm.126-3.41c-3.86-2.292-10.224-2.503-13.889-1.39-.59.18-1.222-.154-1.401-.744-.18-.59.154-1.222.744-1.401 4.22-1.282 11.248-1.035 15.688 1.6c.529.314.704 1.002.39 1.531-.314.529-1.002.704-1.531.39z"/></svg>
+              Écouter sur Spotify &rarr;
+            </a>
+          </div>
+          <!-- Spotify Official Iframe Embed -->
+          <div class="rounded-2xl overflow-hidden shadow-2xl bg-black border border-zinc-800">
+            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/5J2Dx5tuupjgsaWCSnJFGn?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4 : COMPARATEUR SONORE A/B (PREUVE PAR LE SON) -->
+    <section id="comparateur-son" class="py-20 sm:py-28 border-t border-brand-border relative">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="text-center max-w-2xl mx-auto mb-14">
+          <span class="text-xs font-mono font-bold uppercase tracking-wider text-brand-orange block mb-2">
+            La Preuve par les Oreilles
+          </span>
+          <h2 class="font-display font-extrabold text-3xl sm:text-5xl text-white tracking-tight">
+            Entendez la différence en direct.
+          </h2>
+          <p class="text-zinc-400 text-sm sm:text-base mt-4">
+            Un enregistrement au smartphone n'a rien à voir avec un titre mixé et spatialisé au studio. Comparez les deux modes instantanément :
+          </p>
+        </div>
+
+        <div class="max-w-3xl mx-auto glass-panel p-6 sm:p-8 rounded-3xl border border-zinc-800 shadow-2xl">
+          <!-- Sélecteur de Mode A/B -->
+          <div class="flex flex-col sm:flex-row items-center justify-between gap-4 border-b border-zinc-800 pb-6 mb-6">
+            <div class="flex items-center gap-2 w-full sm:w-auto">
+              <button id="mode-smartphone-btn" class="flex-1 sm:flex-none px-4 py-2.5 rounded-xl text-xs font-mono uppercase font-semibold transition-all border border-transparent text-zinc-400 hover:text-white">
+                📱 Prise Smartphone (Chambre)
+              </button>
+              <button id="mode-studio-btn" class="flex-1 sm:flex-none px-4 py-2.5 rounded-xl text-xs font-mono uppercase font-semibold transition-all bg-gradient-to-r from-pink-600 to-orange-500 text-white shadow-lg">
+                ✨ Mix Studio Pro (blvckbeats808)
+              </button>
+            </div>
+            
+            <span id="audio-current-mode-badge" class="text-xs px-3 py-1.5 rounded-full bg-gradient-to-r from-pink-500/20 to-orange-500/20 text-pink-300 border border-pink-500/40 font-mono inline-block">
+              ✨ <strong>Mix Studio Pro</strong> (Mixé par Alexandre Herbin blvckbeats808)
+            </span>
+          </div>
+
+          <!-- Visualiseur Audio Canvas -->
+          <div class="bg-black/60 rounded-2xl p-4 border border-zinc-800/80 mb-6 flex flex-col items-center justify-center relative overflow-hidden">
+            <canvas id="audio-visualizer-canvas" width="600" height="120" class="w-full h-28"></canvas>
+            <div class="text-[10px] font-mono text-zinc-500 uppercase tracking-widest mt-2">
+              Analyseur de Spectre Fréquentiel en Temps Réel
+            </div>
+          </div>
+
+          <!-- Contrôleur de Lecture & Déclencheur Web Audio -->
+          <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+            <button id="audio-play-btn" class="w-full sm:w-auto px-6 py-3.5 rounded-xl font-bold font-mono text-xs uppercase bg-white text-black hover:bg-zinc-200 transition-all flex items-center justify-center gap-3 shadow-xl">
+              <span id="audio-play-icon" class="text-base">▶</span>
+              <span id="audio-play-text">Écouter le comparatif sonore</span>
+            </button>
+            <span class="text-xs text-zinc-400 text-center sm:text-right font-light">
+              💡 Cliquez sur le lecteur puis basculez entre les modes Smartphone et Studio pour entendre la spatialisation.
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5 : DEUX FORMULES AU CHOIX (STUDIO vs DOMICILE) -->
+    <section id="formules" class="py-20 sm:py-28 border-t border-brand-border bg-brand-surface/30 relative">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="text-center max-w-2xl mx-auto mb-16">
+          <span class="text-sm font-mono font-bold uppercase tracking-wider text-brand-magenta block mb-2">
+            Flexibilité & Confort
+          </span>
+          <h2 class="font-display font-black text-3xl sm:text-5xl text-white tracking-tight">
+            Deux formules d'excellence.
+          </h2>
+          <p class="text-zinc-200 text-base sm:text-lg mt-4 font-normal leading-relaxed">
+            Que vous cherchiez l'immersion matérielle dans notre studio ou le confort sans déplacement à domicile, le niveau d'exigence et le projet Spotify restent identiques.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          <!-- FORMULE 1 : AU STUDIO (LE LABO) -->
+          <div class="glass-card p-8 sm:p-10 rounded-3xl border border-zinc-700 bg-brand-surface/90 relative flex flex-col justify-between hover:border-brand-magenta/60 transition-all">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="px-3.5 py-1.5 rounded-full bg-brand-magenta/20 border border-brand-magenta/50 text-brand-magenta font-mono text-xs uppercase font-bold">
+                  Immersion Studio
+                </span>
+                <span class="text-sm font-mono font-bold text-brand-orange quota-studio-count">
+                  ⚠️ 2 places restantes
+                </span>
+              </div>
+
+              <h3 class="font-display font-black text-3xl text-white mb-2">Au Studio (Le Labo)</h3>
+              <p class="text-sm text-zinc-300 mb-6 font-mono font-medium">Quartier de la Pompignane, Montpellier</p>
+
+              <div class="mb-6 pb-6 border-b border-zinc-700">
+                <div class="flex items-baseline gap-2">
+                  <span class="font-display font-black text-5xl text-white">110 €</span>
+                  <span class="text-zinc-300 text-base font-mono">/ mois (lissé sur 10 mois)</span>
+                </div>
+                <p class="text-sm text-zinc-300 mt-2 font-medium">1 cours de 45 min / semaine + Session studio trimestrielle incluse</p>
+              </div>
+
+              <ul class="space-y-4 text-base text-zinc-100 mb-8 font-normal">
+                <li class="flex items-start gap-3">
+                  <span class="text-brand-magenta font-black text-lg">✓</span>
+                  <span><strong class="text-white font-bold">Environnement acoustique insonorisé</strong> et stimulant pour l'inspiration de l'enfant.</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="text-brand-magenta font-black text-lg">✓</span>
+                  <span><strong class="text-white font-bold">Parc d'instruments haut de gamme fourni</strong> (guitares acoustiques, électriques adaptées 7-17 ans, amplis pro à volume régulé).</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="text-brand-magenta font-black text-lg">✓</span>
+                  <span><strong class="text-white font-bold">Projet Signature Spotify inclus :</strong> Enregistrement micro pro, mixage et distribution officielle.</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="text-brand-magenta font-black text-lg">✓</span>
+                  <span><strong class="text-white font-bold">Séance d'essai de 30 min offerte :</strong> Présence des parents vivement encouragée pour découvrir le lieu.</span>
+                </li>
+              </ul>
+            </div>
+
+            <a href="#candidature" class="w-full py-4 rounded-xl font-extrabold uppercase tracking-wider text-sm bg-zinc-800 hover:bg-zinc-700 border border-zinc-600 text-white text-center transition-all block shadow-lg">
+              Candidater pour le Studio
+            </a>
+          </div>
+
+          <!-- FORMULE 2 : À DOMICILE (AVEC CRÉDIT D'IMPÔT 50%) -->
+          <div class="glass-card p-8 sm:p-10 rounded-3xl border-2 border-brand-orange relative flex flex-col justify-between box-glow-orange bg-gradient-to-b from-brand-card to-brand-surface">
+            <!-- Badge Crédit d'impôt -->
+            <div class="absolute -top-3.5 left-8 px-4 py-1.5 rounded-full bg-gradient-to-r from-brand-orange to-brand-magenta text-white font-mono text-xs font-black uppercase tracking-wider shadow-xl">
+              ★ Avance Immédiate Crédit d'Impôt 50%
+            </div>
+
+            <div>
+              <div class="flex items-center justify-between mb-4 mt-2">
+                <span class="px-3.5 py-1.5 rounded-full bg-brand-orange/20 border border-brand-orange/50 text-brand-orange font-mono text-xs uppercase font-bold">
+                  Confort Total Famille
+                </span>
+                <span class="text-sm font-mono font-bold text-brand-magenta quota-home-count">
+                  ⚠️ 3 créneaux restants
+                </span>
+              </div>
+
+              <h3 class="font-display font-black text-3xl text-white mb-2">À Domicile (Chez vous)</h3>
+              <p class="text-sm text-zinc-300 mb-6 font-mono font-medium">Montpellier Métropole (Castelnau, Lattes, Clapiers...)</p>
+
+              <div class="mb-6 pb-6 border-b border-zinc-700">
+                <div class="flex items-baseline gap-2">
+                  <span class="font-display font-black text-5xl text-brand-cyan">65 €</span>
+                  <span class="text-zinc-200 text-base font-mono font-bold">/ mois (reste à charge)</span>
+                </div>
+                <p class="text-sm text-zinc-200 mt-2 font-medium">
+                  Tarif brut : 130 €/mois — <strong class="text-white font-bold underline decoration-brand-cyan">Déduction immédiate de 50%</strong> via CESU / Urssaf (sans avance de frais).
+                </p>
+              </div>
+
+              <ul class="space-y-4 text-base text-zinc-100 mb-8 font-normal">
+                <li class="flex items-start gap-3">
+                  <span class="text-brand-orange font-black text-lg">✓</span>
+                  <span><strong class="text-white font-bold">Zéro transport pour les parents :</strong> Idéal après la sortie d'école ou le mercredi.</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="text-brand-orange font-black text-lg">✓</span>
+                  <span><strong class="text-white font-bold">Progression dans son cadre familier :</strong> Gain de confiance rapide dans sa chambre ou son salon.</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="text-brand-orange font-black text-lg">✓</span>
+                  <span><strong class="text-white font-bold">Même projet Spotify inclus :</strong> Session trimestrielle studio réservée pour la prise de son finale.</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="text-brand-orange font-black text-lg">✓</span>
+                  <span><strong class="text-white font-bold">Règlement simplifié :</strong> Chèques CESU, virement avec attestation fiscale pour vos déclarations.</span>
+                </li>
+              </ul>
+            </div>
+
+            <a href="#candidature" class="w-full py-4 rounded-xl font-extrabold uppercase tracking-wider text-sm bg-gradient-to-r from-brand-orange to-brand-magenta text-white text-center transition-all block shadow-xl hover:scale-[1.02]">
+              Candidater à Domicile (65 €/mois)
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 6 : ALEXANDRE HERBIN (blvckbeats808 / Herbo) -->
+    <section id="fondateur" class="py-20 sm:py-28 border-t border-brand-border relative overflow-hidden">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          
+          <!-- Colonne Profil / Storytelling -->
+          <div class="lg:col-span-7">
+            <span class="text-sm font-mono font-bold uppercase tracking-wider text-brand-orange block mb-2">
+              Direction Pédagogique & Musicale
+            </span>
+            <h2 class="font-display font-black text-3xl sm:text-5xl text-white tracking-tight mb-6">
+              Alexandre Herbin <br>
+              <span class="bg-gradient-to-r from-brand-orange to-brand-magenta bg-clip-text text-transparent">
+                Guitariste, Pédagogue & Beatmaker International.
+              </span>
+            </h2>
+
+            <div class="space-y-4 text-zinc-100 text-base sm:text-lg leading-relaxed font-normal">
+              <p>
+                Âgé de <strong class="text-white font-bold">26 ans</strong> et pratiquant la guitare depuis plus de <strong class="text-white font-bold">14 ans</strong>, Alexandre allie l'amour de la scène instrumentale vivante à la maîtrise des outils de production modernes.
+              </p>
+              <p>
+                Actif sous le pseudonyme de producteur <strong class="text-brand-magenta font-bold">blvckbeats808</strong> et artiste sous le nom de <strong class="text-brand-orange font-bold">Herbo</strong> sur Spotify, ses compositions instrumentales et beats de guitare voyagent et sont vendus à l'international — notamment auprès d'artistes et rappeurs aux <strong class="text-white font-bold">États-Unis (Nashville, Tennessee)</strong> et en Europe.
+              </p>
+              <p>
+                À L'Atelier des Cordes, il supervise personnellement chaque étape pédagogique et prend en charge le mixage studio de chaque élève avec les mêmes convertisseurs, compresseurs et exigences acoustiques que pour ses projets diffusés outre-Atlantique.
+              </p>
+            </div>
+
+            <!-- Hub Réseaux & Médias Officiels d'Alexandre Herbin -->
+            <div class="mt-8 space-y-4">
+              <span class="text-xs font-mono font-bold text-brand-orange uppercase tracking-wider block">
+                ★ Réseaux Sociaux & Productions en Écoute Libre
+              </span>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <!-- Instagram Card -->
+                <a href="https://www.instagram.com/__alexblacki/" target="_blank" rel="noopener noreferrer" class="p-4 rounded-2xl bg-zinc-900/90 border border-zinc-700 hover:border-pink-500 text-zinc-100 flex items-center gap-3.5 transition-all group shadow-lg hover:bg-zinc-800/80">
+                  <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-amber-500 via-pink-600 to-purple-600 flex items-center justify-center text-white shrink-0 group-hover:scale-105 transition-transform shadow-md">
+                    <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
+                      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    </svg>
+                  </div>
+                  <div class="overflow-hidden">
+                    <span class="text-sm font-bold text-white block group-hover:text-pink-400 transition-colors">@__alexblacki</span>
+                    <span class="text-xs text-zinc-300 font-mono block">Instagram Alexandre</span>
+                  </div>
+                </a>
+
+                <!-- YouTube Card -->
+                <a href="https://www.youtube.com/@alkapoze" target="_blank" rel="noopener noreferrer" class="p-4 rounded-2xl bg-zinc-900/90 border border-zinc-700 hover:border-red-500 text-zinc-100 flex items-center gap-3.5 transition-all group shadow-lg hover:bg-zinc-800/80">
+                  <div class="w-11 h-11 rounded-xl bg-red-600 flex items-center justify-center text-white shrink-0 group-hover:scale-105 transition-transform shadow-md">
+                    <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
+                      <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                    </svg>
+                  </div>
+                  <div class="overflow-hidden">
+                    <span class="text-sm font-bold text-white block group-hover:text-red-400 transition-colors">@alkapoze</span>
+                    <span class="text-xs text-zinc-300 font-mono block">Prods guitare YouTube</span>
+                  </div>
+                </a>
+              </div>
+
+              <!-- Preuve par les faits (Liens Placement Nashville) -->
+              <div class="p-5 rounded-2xl glass-panel border border-zinc-700 bg-brand-surface/90 space-y-3">
+                <span class="text-xs font-mono font-bold text-brand-cyan uppercase tracking-wider block">
+                  ★ Référence Placement USA (Nashville, Tennessee)
+                </span>
+                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-sm font-mono">
+                  <a href="https://youtu.be/925-MVwqzmA?list=RD925-MVwqzmA" target="_blank" rel="noopener noreferrer" class="text-zinc-100 hover:text-brand-magenta flex items-center gap-2 underline font-semibold">
+                    <svg class="w-5 h-5 text-red-500 shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                    Écouter le titre final sorti aux USA
+                  </a>
+                  <a href="https://www.youtube.com/watch?v=lqV26trVM90&list=RDlqV26trVM90&start_radio=1" target="_blank" rel="noopener noreferrer" class="text-zinc-200 hover:text-brand-orange flex items-center gap-2 underline font-semibold">
+                    Instrumentale guitare vendue par blvckbeats808 &rarr;
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Équipe de profs & recrutement -->
+            <div class="mt-6 flex flex-wrap items-center gap-4 text-sm font-mono text-zinc-300">
+              <span>📍 Basé à Montpellier (Pompignane)</span>
+              <span>•</span>
+              <a href="mailto:blvckbeats808@gmail.com?subject=Candidature%20Professeur%20Guitare" class="text-zinc-200 hover:text-white underline font-medium">
+                Rejoindre l'équipe pédagogique (Musiciens intervenants)
+              </a>
+            </div>
+          </div>
+
+          <!-- Colonne Card Visuelle & Références -->
+          <div class="lg:col-span-5">
+            <div class="glass-card p-6 rounded-3xl border border-zinc-700 bg-brand-surface/90 relative">
+              <div class="aspect-square rounded-2xl bg-gradient-to-tr from-brand-magenta/30 via-zinc-900 to-brand-orange/20 border border-zinc-600 flex flex-col justify-between p-6 overflow-hidden relative group">
+                <!-- Image Photo réelle si présente dans assets/alexandre.jpg -->
+                <img src="assets/alexandre.jpg" alt="Alexandre Herbin" class="w-full h-full object-cover absolute inset-0 z-0 opacity-40 group-hover:opacity-60 transition-opacity" onerror="this.style.display='none';">
+
+                <!-- Background guitar visual / badge -->
+                <div class="flex justify-between items-start z-10">
+                  <span class="px-3 py-1.5 rounded-full bg-black/80 backdrop-blur-md border border-white/20 text-xs font-mono text-white font-bold">
+                    Fondateur & Lead Producer
+                  </span>
+                  <span class="text-sm font-mono text-brand-magenta font-bold">
+                    14 ans de Guitare
+                  </span>
+                </div>
+
+                <div class="my-auto text-center z-10">
+                  <div class="w-24 h-24 mx-auto rounded-full bg-gradient-to-br from-brand-magenta to-brand-orange p-1 shadow-2xl mb-4">
+                    <div class="w-full h-full rounded-full bg-brand-dark flex items-center justify-center text-4xl">
+                      🎸
+                    </div>
+                  </div>
+                  <h3 class="font-display font-black text-3xl text-white">Alexandre Herbin</h3>
+                  <p class="text-sm text-brand-orange font-mono font-bold mt-1">blvckbeats808 • Herbo</p>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3 text-center text-xs font-mono border-t border-zinc-700 pt-4">
+                  <div class="bg-black/60 p-3 rounded-xl border border-zinc-800">
+                    <span class="text-brand-magenta font-black block text-base">26 ans</span>
+                    <span class="text-xs text-zinc-300 font-medium">Dynamisme & Feeling</span>
+                  </div>
+                  <div class="bg-black/60 p-3 rounded-xl border border-zinc-800">
+                    <span class="text-brand-orange font-black block text-base">100% Pro</span>
+                    <span class="text-xs text-zinc-300 font-medium">Mix & Pédagogie Active</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Boutons d'Accès Directs aux Réseaux / Plateformes -->
+              <div class="mt-4 grid grid-cols-3 gap-2 text-center text-xs font-mono">
+                <a href="https://www.instagram.com/__alexblacki/" target="_blank" rel="noopener noreferrer" class="py-2.5 px-2 rounded-xl bg-zinc-900 border border-zinc-700 hover:border-pink-500 text-zinc-200 hover:text-pink-400 font-bold transition-all flex items-center justify-center gap-1.5 shadow-md">
+                  <span class="text-pink-400">📸</span> Instagram
+                </a>
+                <a href="https://www.youtube.com/@alkapoze" target="_blank" rel="noopener noreferrer" class="py-2.5 px-2 rounded-xl bg-zinc-900 border border-zinc-700 hover:border-red-500 text-zinc-200 hover:text-red-400 font-bold transition-all flex items-center justify-center gap-1.5 shadow-md">
+                  <span class="text-red-500">▶</span> YouTube
+                </a>
+                <a href="https://open.spotify.com/intl-fr/track/5J2Dx5tuupjgsaWCSnJFGn?si=00b9445e3521482c" target="_blank" rel="noopener noreferrer" class="py-2.5 px-2 rounded-xl bg-zinc-900 border border-zinc-700 hover:border-emerald-500 text-zinc-200 hover:text-emerald-400 font-bold transition-all flex items-center justify-center gap-1.5 shadow-md">
+                  <span class="text-emerald-400">🎧</span> Spotify
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 7 : TARIFS, QUOTAS & TRANSPARENCE -->
+    <section id="tarifs" class="py-20 sm:py-28 border-t border-brand-border bg-brand-surface/20 relative">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="text-center max-w-2xl mx-auto mb-16">
+          <span class="text-sm font-mono font-bold uppercase tracking-wider text-brand-magenta block mb-2">
+            Tarifs Transparents & Places Limitées
+          </span>
+          <h2 class="font-display font-black text-3xl sm:text-5xl text-white tracking-tight">
+            Pourquoi le nombre d'admissions est strictement limité ?
+          </h2>
+          <p class="text-zinc-200 text-base sm:text-lg mt-4 font-normal leading-relaxed">
+            Pour garantir le temps de prise de son individuel et le travail de mixage/mastering sur mesure pour chaque élève, nous plafonnons les inscriptions à <strong class="text-white font-bold underline decoration-brand-magenta">12 élèves par cycle trimestriel</strong>.
+          </p>
+        </div>
+
+        <!-- Tableau Comparatif Complet -->
+        <div class="max-w-4xl mx-auto glass-panel rounded-3xl border border-zinc-700 overflow-hidden shadow-2xl bg-brand-surface">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-base">
+              <thead class="bg-brand-dark border-b border-zinc-700 text-xs font-mono uppercase text-zinc-300">
+                <tr>
+                  <th class="py-4 px-6">Prestation</th>
+                  <th class="py-4 px-6 text-brand-magenta font-bold">Formule Studio (Le Labo)</th>
+                  <th class="py-4 px-6 text-brand-orange font-bold">Formule À Domicile</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-zinc-700/80 font-normal text-zinc-200">
+                <tr>
+                  <td class="py-5 px-6 font-bold text-white">Tarif Mensuel</td>
+                  <td class="py-5 px-6 font-display font-black text-2xl text-white">
+                    110 € <span class="text-xs font-mono text-zinc-300 font-normal">/ mois (lissé sur 10 mois)</span>
+                  </td>
+                  <td class="py-5 px-6">
+                    <span class="font-display font-black text-2xl text-brand-cyan">65 €</span> <span class="text-xs font-mono text-zinc-200 font-bold">/ mois net</span>
+                    <span class="block text-xs text-zinc-300 font-mono font-medium">130 € brut - 50% crédit d'impôt immédiat</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="py-5 px-6 font-bold text-white">Séance Hebdomadaire</td>
+                  <td class="py-5 px-6">1 cours de 45 min / semaine</td>
+                  <td class="py-5 px-6">1 cours de 45 min / semaine</td>
+                </tr>
+                <tr>
+                  <td class="py-5 px-6 font-bold text-white">Séance d'Essai</td>
+                  <td class="py-5 px-6 text-emerald-400 font-mono font-bold text-lg">Offerte (30 min)</td>
+                  <td class="py-5 px-6 text-emerald-400 font-mono font-bold text-lg">Offerte (30 min)</td>
+                </tr>
+                <tr>
+                  <td class="py-5 px-6 font-bold text-white">Projet Studio Trimestriel</td>
+                  <td class="py-5 px-6">Enregistrement studio inclus</td>
+                  <td class="py-5 px-6">Session studio trimestrielle incluse</td>
+                </tr>
+                <tr>
+                  <td class="py-5 px-6 font-bold text-white">Sortie Officielle Spotify</td>
+                  <td class="py-5 px-6 text-brand-magenta font-mono font-bold">Inclus (Titre officiel + MP3 HD)</td>
+                  <td class="py-5 px-6 text-brand-orange font-mono font-bold">Inclus (Titre officiel + MP3 HD)</td>
+                </tr>
+                <tr>
+                  <td class="py-5 px-6 font-bold text-white">Disponibilité actuelle</td>
+                  <td class="py-5 px-6 font-mono text-sm text-brand-orange font-bold quota-studio-count">
+                    ⚠️ 2 places disponibles
+                  </td>
+                  <td class="py-5 px-6 font-mono text-sm text-brand-magenta font-bold quota-home-count">
+                    ⚠️ 3 créneaux restants
+                  </td>
+                </tr>
+                <tr>
+                  <td class="py-5 px-6 font-bold text-white">Règlement Accepté</td>
+                  <td class="py-5 px-6 text-sm text-zinc-300 font-mono">Prélèvement, Virement</td>
+                  <td class="py-5 px-6 text-sm text-zinc-300 font-mono">Chèques CESU, Virement avec avance fiscale</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 8 : LE DIAGNOSTIC & CASTING INTERACTIF MULTI-ÉTAPES -->
+    <section id="candidature" class="py-20 sm:py-28 border-t border-brand-border relative">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+          <span class="text-sm font-mono font-bold uppercase tracking-wider text-brand-magenta block mb-2">
+            Admissions Saisonnière
+          </span>
+          <h2 class="font-display font-black text-3xl sm:text-5xl text-white tracking-tight">
+            Déposer une candidature.
+          </h2>
+          <p class="text-zinc-200 text-base sm:text-lg mt-4 font-normal leading-relaxed">
+            Remplissez ce court questionnaire en 2 minutes pour vérifier la compatibilité du planning et réserver la séance d'essai offerte de votre enfant.
+          </p>
+        </div>
+
+        <div id="casting-funnel-container" class="glass-panel p-6 sm:p-10 rounded-3xl border border-brand-border shadow-2xl relative">
+          <!-- Progress bar -->
+          <div class="w-full bg-zinc-800 h-1.5 rounded-full overflow-hidden mb-8">
+            <div id="funnel-progress-bar" class="bg-gradient-to-r from-brand-magenta via-brand-orange to-brand-purple h-full transition-all duration-300" style="width: 20%;"></div>
+          </div>
+
+          <div class="flex items-center justify-between text-sm font-mono font-bold text-zinc-200 mb-6">
+            <span id="funnel-step-indicator" class="text-white">Étape 1 sur 5</span>
+            <span class="text-brand-magenta">★ Cours d'essai offert</span>
+          </div>
+
+          <!-- CONTENU DU FORMULAIRE -->
+          <div id="funnel-form-content">
+            <!-- ÉTAPE 1 : PROFIL ENFANT -->
+            <div id="funnel-step-1" class="space-y-6">
+              <h3 class="font-display font-black text-2xl text-white">1. Qui est le futur guitariste ?</h3>
+              
+              <div>
+                <label class="block text-sm font-mono uppercase font-bold text-zinc-200 mb-2">Prénom de votre enfant *</label>
+                <input id="funnel-child-name" type="text" placeholder="Ex: Lucas, Emma, Nolan..." class="w-full bg-zinc-900 border border-zinc-600 rounded-xl px-4 py-3.5 text-white text-base focus:outline-none focus:border-brand-magenta font-semibold">
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-sm font-mono uppercase font-bold text-zinc-200 mb-2">Son Âge *</label>
+                  <select id="funnel-child-age" class="w-full bg-zinc-900 border border-zinc-600 rounded-xl px-4 py-3.5 text-white text-base focus:outline-none focus:border-brand-magenta font-semibold">
+                    <option value="7">7 ans</option>
+                    <option value="8">8 ans</option>
+                    <option value="9">9 ans</option>
+                    <option value="10">10 ans</option>
+                    <option value="11" selected>11 ans</option>
+                    <option value="12">12 ans</option>
+                    <option value="13">13 ans</option>
+                    <option value="14">14 ans</option>
+                    <option value="15">15 ans</option>
+                    <option value="16">16 ans</option>
+                    <option value="17">17 ans</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label class="block text-sm font-mono uppercase font-bold text-zinc-200 mb-2">Son niveau actuel *</label>
+                  <select id="funnel-child-level" class="w-full bg-zinc-900 border border-zinc-600 rounded-xl px-4 py-3.5 text-white text-base focus:outline-none focus:border-brand-magenta font-semibold">
+                    <option value="Débutant complet" selected>Débutant complet (jamais touché de guitare)</option>
+                    <option value="Débutant avec notions">Débutant avec notions (quelques accords / tutos)</option>
+                    <option value="Intermédiaire">Intermédiaire (joue déjà des morceaux)</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- ÉTAPE 2 : UNIVERS MUSICAL -->
+            <div id="funnel-step-2" class="space-y-6 hidden">
+              <h3 class="font-display font-black text-2xl text-white">2. Quels styles musicaux le passionnent ?</h3>
+              <p class="text-sm text-zinc-200 font-medium">Sélectionnez les genres qu'il écoute le plus :</p>
+              
+              <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                <button type="button" data-genre="Rock / Hard Rock" class="genre-tag-btn p-4 rounded-xl border border-zinc-600 bg-zinc-800 text-zinc-100 text-sm font-mono font-bold text-left transition-all hover:border-brand-magenta">
+                  🎸 Rock / Metal
+                </button>
+                <button type="button" data-genre="Anime & Gaming" class="genre-tag-btn p-4 rounded-xl border border-zinc-600 bg-zinc-800 text-zinc-100 text-sm font-mono font-bold text-left transition-all hover:border-brand-magenta">
+                  🌸 Anime / Jeux Vidéo
+                </button>
+                <button type="button" data-genre="Rap / Drill Acoustique" class="genre-tag-btn p-4 rounded-xl border border-zinc-600 bg-zinc-800 text-zinc-100 text-sm font-mono font-bold text-left transition-all hover:border-brand-magenta">
+                  ⚡ Rap / Drill / 808
+                </button>
+                <button type="button" data-genre="Pop & Variété" class="genre-tag-btn p-4 rounded-xl border border-zinc-600 bg-zinc-800 text-zinc-100 text-sm font-mono font-bold text-left transition-all hover:border-brand-magenta">
+                  ✨ Pop & Chanson
+                </button>
+                <button type="button" data-genre="Musiques de Films" class="genre-tag-btn p-4 rounded-xl border border-zinc-600 bg-zinc-800 text-zinc-100 text-sm font-mono font-bold text-left transition-all hover:border-brand-magenta">
+                  🎬 Musiques de Films
+                </button>
+                <button type="button" data-genre="Curieux de tout" class="genre-tag-btn p-4 rounded-xl border border-zinc-600 bg-zinc-800 text-zinc-100 text-sm font-mono font-bold text-left transition-all hover:border-brand-magenta">
+                  🌍 Curieux de tout
+                </button>
+              </div>
+
+              <div>
+                <label class="block text-sm font-mono uppercase font-bold text-zinc-200 mb-2">Artistes, groupes ou morceaux préférés (Optionnel)</label>
+                <input id="funnel-artists" type="text" placeholder="Ex: Nirvana, Billie Eilish, Naruto OST, Gazo..." class="w-full bg-zinc-900 border border-zinc-600 rounded-xl px-4 py-3.5 text-white text-base focus:outline-none focus:border-brand-magenta">
+              </div>
+            </div>
+
+            <!-- ÉTAPE 3 : FORMULE SOUHAITÉE -->
+            <div id="funnel-step-3" class="space-y-6 hidden">
+              <h3 class="font-display font-black text-2xl text-white">3. Quelle formule préférez-vous ?</h3>
+              
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div data-formula="studio" class="formula-selector-card p-6 rounded-2xl border-2 border-pink-500 bg-pink-500/15 cursor-pointer transition-all">
+                  <div class="flex items-center justify-between mb-2">
+                    <span class="text-xs font-mono font-black text-brand-magenta uppercase">Au Studio</span>
+                    <span class="text-sm font-mono text-zinc-200 font-bold">110 € / mois</span>
+                  </div>
+                  <h4 class="font-bold text-white text-lg">Immersion Pompignane</h4>
+                  <p class="text-sm text-zinc-200 mt-2 font-normal">Matériel studio fourni, insonorisation et cadre pro.</p>
+                </div>
+
+                <div data-formula="domicile" class="formula-selector-card p-6 rounded-2xl border border-zinc-600 bg-zinc-900 cursor-pointer transition-all hover:border-brand-orange">
+                  <div class="flex items-center justify-between mb-2">
+                    <span class="text-xs font-mono font-black text-brand-orange uppercase">À Domicile</span>
+                    <span class="text-sm font-mono text-brand-cyan font-bold">65 € / mois net</span>
+                  </div>
+                  <h4 class="font-bold text-white text-lg">Chez vous (Montpellier)</h4>
+                  <p class="text-sm text-zinc-200 mt-2 font-normal">Zéro trajet. Éligible crédit d'impôt immédiat 50%.</p>
+                </div>
+              </div>
+
+              <!-- Zone Domicile (Code postal) -->
+              <div id="funnel-home-address-box" class="hidden p-4 rounded-xl bg-brand-orange/15 border border-brand-orange/40">
+                <label class="block text-sm font-mono uppercase font-bold text-brand-orange mb-1">Votre Ville ou Code Postal (Montpellier & Métropole) *</label>
+                <input id="funnel-postal-code" type="text" placeholder="Ex: 34000 Montpellier, Castelnau-le-Lez..." class="w-full bg-zinc-900 border border-zinc-600 rounded-xl px-4 py-3 text-white text-base focus:outline-none focus:border-brand-orange font-medium">
+                <span class="text-xs text-zinc-300 mt-1 block font-medium">Rayon d'intervention : Montpellier, Pompignane, Castelnau, Lattes, Le Crès, Pérols, Clapiers...</span>
+              </div>
+            </div>
+
+            <!-- ÉTAPE 4 : CRÉNEAUX SOUHAITÉS -->
+            <div id="funnel-step-4" class="space-y-6 hidden">
+              <h3 class="font-display font-black text-2xl text-white">4. Quel créneau vous conviendrait le mieux ?</h3>
+              <p class="text-sm text-zinc-200 font-medium">Statut des disponibilités en temps réel pour ce trimestre :</p>
+              
+              <div class="space-y-3">
+                <label class="flex items-center justify-between p-4 rounded-xl bg-zinc-900 border border-zinc-700 hover:border-zinc-500 cursor-pointer">
+                  <div class="flex items-center gap-3">
+                    <input type="radio" name="preferred-slot" value="Samedi matin (1 créneau)" checked class="w-4 h-4 text-brand-magenta focus:ring-brand-magenta">
+                    <span class="text-base font-bold text-white">Samedi matin</span>
+                  </div>
+                  <span class="text-xs font-mono text-brand-orange font-bold">⚠️ 1 créneau disponible</span>
+                </label>
+
+                <label class="flex items-center justify-between p-4 rounded-xl bg-zinc-900 border border-zinc-700 hover:border-zinc-500 cursor-pointer">
+                  <div class="flex items-center gap-3">
+                    <input type="radio" name="preferred-slot" value="Mardi fin de journée (17h-19h)" class="w-4 h-4 text-brand-magenta focus:ring-brand-magenta">
+                    <span class="text-base font-bold text-white">Mardi fin de journée (17h - 19h)</span>
+                  </div>
+                  <span class="text-xs font-mono text-emerald-400 font-bold">🟢 Disponible</span>
+                </label>
+
+                <label class="flex items-center justify-between p-4 rounded-xl bg-zinc-900 border border-zinc-700 hover:border-zinc-500 cursor-pointer">
+                  <div class="flex items-center gap-3">
+                    <input type="radio" name="preferred-slot" value="Jeudi fin de journée (17h-19h)" class="w-4 h-4 text-brand-magenta focus:ring-brand-magenta">
+                    <span class="text-base font-bold text-white">Jeudi fin de journée (17h - 19h)</span>
+                  </div>
+                  <span class="text-xs font-mono text-emerald-400 font-bold">🟢 Disponible</span>
+                </label>
+
+                <label class="flex items-center justify-between p-4 rounded-xl bg-zinc-900/50 border border-zinc-800 opacity-70 cursor-not-allowed">
+                  <div class="flex items-center gap-3">
+                    <input type="radio" name="preferred-slot" value="Mercredi après-midi (Liste d'attente)" class="w-4 h-4 text-brand-magenta focus:ring-brand-magenta">
+                    <span class="text-base font-medium text-zinc-300">Mercredi après-midi</span>
+                  </div>
+                  <span class="text-xs font-mono text-red-400 font-bold">🔴 COMPLET (Liste d'attente)</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- ÉTAPE 5 : COORDONNÉES PARENT -->
+            <div id="funnel-step-5" class="space-y-6 hidden">
+              <h3 class="font-display font-black text-2xl text-white">5. Vos coordonnées pour valider le créneau</h3>
+              
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-sm font-mono uppercase font-bold text-zinc-200 mb-2">Nom & Prénom du parent *</label>
+                  <input id="funnel-parent-name" type="text" placeholder="Ex: Julien Dupont" class="w-full bg-zinc-900 border border-zinc-600 rounded-xl px-4 py-3.5 text-white text-base focus:outline-none focus:border-brand-magenta font-medium">
+                </div>
+
+                <div>
+                  <label class="block text-sm font-mono uppercase font-bold text-zinc-200 mb-2">Numéro de portable (WhatsApp) *</label>
+                  <input id="funnel-parent-phone" type="tel" placeholder="06 .. .. .. .." class="w-full bg-zinc-900 border border-zinc-600 rounded-xl px-4 py-3.5 text-white text-base focus:outline-none focus:border-brand-magenta font-medium">
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-sm font-mono uppercase font-bold text-zinc-200 mb-2">Adresse E-mail *</label>
+                <input id="funnel-parent-email" type="email" placeholder="julien.dupont@email.com" class="w-full bg-zinc-900 border border-zinc-600 rounded-xl px-4 py-3.5 text-white text-base focus:outline-none focus:border-brand-magenta font-medium">
+              </div>
+
+              <div>
+                <label class="block text-sm font-mono uppercase font-bold text-zinc-200 mb-2">Une question ou précision particulière ? (Optionnel)</label>
+                <textarea id="funnel-parent-notes" rows="2" placeholder="Prêt de guitare, horaires précis, etc." class="w-full bg-zinc-900 border border-zinc-600 rounded-xl px-4 py-3 text-white text-base focus:outline-none focus:border-brand-magenta font-medium"></textarea>
+              </div>
+
+              <div class="flex items-start gap-3">
+                <input id="funnel-consent" type="checkbox" checked class="mt-1 w-4 h-4 rounded bg-zinc-900 border-zinc-600 text-brand-magenta focus:ring-brand-magenta">
+                <label for="funnel-consent" class="text-sm text-zinc-200 leading-relaxed font-medium">
+                  J'accepte d'être recontacté(e) sous 24h par Alexandre Herbin pour organiser la séance d'essai offerte de 30 minutes. Aucune donnée n'est cédée à des tiers.
+                </label>
+              </div>
+            </div>
+
+            <!-- BOUTONS DE NAVIGATION DU FUNNEL -->
+            <div class="flex items-center justify-between pt-8 border-t border-zinc-700 mt-8">
+              <button id="funnel-prev-btn" type="button" class="px-5 py-3 rounded-xl text-sm font-mono uppercase font-bold text-zinc-300 hover:text-white transition-all invisible">
+                &larr; Étape précédente
+              </button>
+
+              <button id="funnel-next-btn" type="button" class="px-8 py-4 rounded-xl font-black font-mono text-sm uppercase tracking-wider bg-white text-black hover:bg-zinc-200 transition-all shadow-xl">
+                Continuer &rarr;
+              </button>
+
+              <button id="funnel-submit-btn" type="button" class="px-8 py-4 rounded-xl font-black font-mono text-sm uppercase tracking-wider bg-gradient-to-r from-brand-magenta via-brand-orange to-brand-purple text-white hover:scale-105 transition-all shadow-xl hidden box-glow-magenta">
+                Valider ma candidature pour le cours d'essai &rarr;
+              </button>
+            </div>
+          </div>
+
+          <!-- ÉCRAN DE CONFIRMATION / SUCCÈS -->
+          <div id="funnel-success-box" class="hidden text-center py-10 space-y-4">
+            <div class="w-16 h-16 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 flex items-center justify-center text-3xl mx-auto mb-4">
+              ✓
+            </div>
+            <h3 class="font-display font-extrabold text-2xl text-white">Votre candidature a bien été reçue !</h3>
+            <p class="text-sm text-zinc-300 max-w-lg mx-auto">
+              Merci pour votre confiance. Alexandre Herbin étudie votre demande et vous recontactera sous <strong>24h ouvrées</strong> par WhatsApp ou téléphone pour bloquer le créneau de votre enfant.
+            </p>
+            <div class="pt-6">
+              <a id="funnel-wa-direct-btn" href="#" target="_blank" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-mono text-xs uppercase font-bold transition-all shadow-xl">
+                💬 Finaliser la discussion en direct sur WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION FAQ PARENTS -->
+    <section class="py-16 sm:py-24 border-t border-brand-border bg-brand-surface/20">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-12">
+          <span class="text-sm font-mono font-bold uppercase tracking-wider text-brand-orange block mb-2">
+            Réponses aux Parents
+          </span>
+          <h2 class="font-display font-black text-3xl sm:text-4xl text-white">
+            Questions fréquentes
+          </h2>
+        </div>
+
+        <div class="space-y-4">
+          <div class="glass-card p-6 sm:p-8 rounded-2xl border border-zinc-700 bg-brand-surface/90">
+            <h4 class="font-bold text-white text-lg mb-2">Mon enfant n'a pas encore de guitare, comment faire pour l'essai ?</h4>
+            <p class="text-base text-zinc-200 leading-relaxed font-normal">
+              Au studio à la Pompignane, tout le matériel est fourni gratuitement (guitares acoustiques, électriques adaptées à sa taille et son âge). Pour les cours à domicile, Alexandre peut prêter un instrument pour la séance d'essai et vous conseiller pour l'achat sans vous ruiner.
+            </p>
+          </div>
+
+          <div class="glass-card p-6 sm:p-8 rounded-2xl border border-zinc-700 bg-brand-surface/90">
+            <h4 class="font-bold text-white text-lg mb-2">Comment fonctionne le crédit d'impôt de 50% sur les cours à domicile ?</h4>
+            <p class="text-base text-zinc-200 leading-relaxed font-normal">
+              Grâce au service « Avance Immédiate » de l'Urssaf / CESU, vous ne payez directement que 50% du tarif (soit 65 €/mois au lieu de 130 €). L'Urssaf règle le solde sans que vous ayez à avancer la trésorerie.
+            </p>
+          </div>
+
+          <div class="glass-card p-6 sm:p-8 rounded-2xl border border-zinc-700 bg-brand-surface/90">
+            <h4 class="font-bold text-white text-lg mb-2">Comment l'identité de mon enfant est-elle protégée sur Spotify ?</h4>
+            <p class="text-base text-zinc-200 leading-relaxed font-normal">
+              Aucun nom de famille n'est jamais divulgué. Les morceaux sortent sous le prénom de l'élève ou sous un pseudonyme d'artiste de son choix (ex: <em>Herbo feat. Léo</em>). Une autorisation parentale écrite officielle est signée avant toute mise en ligne.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- BOUTON D'ACTION FLOTTANT MOBILE -->
+  <div class="fixed bottom-6 right-6 z-40 sm:hidden">
+    <a href="https://wa.me/33616392658?text=Bonjour%20Alexandre,%20je%20souhaite%20des%20renseignements%20pour%20les%20cours%20de%20guitare" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 bg-emerald-500 text-black font-bold text-xs uppercase px-5 py-3.5 rounded-full shadow-2xl pulse-beacon font-mono">
+      <span>💬</span> WhatsApp Direct
+    </a>
+  </div>
+
+  <!-- FOOTER COMPLET -->
+  <footer class="bg-brand-dark border-t border-brand-border py-14 text-zinc-300 text-sm font-mono">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+        <div class="md:col-span-2 space-y-3">
+          <span class="font-display font-black text-2xl text-white block">
+            L'Atelier des Cordes
+          </span>
+          <p class="text-zinc-300 text-sm font-sans max-w-sm">
+            École de guitare moderne & studio de production musicale pour enfants et adolescents de 7 à 17 ans à Montpellier.
+          </p>
+          <p class="text-brand-magenta text-sm font-mono font-bold">
+            « Vos enfants sont nés pour créer, pas pour scroller. »
+          </p>
+        </div>
+
+        <div>
+          <span class="text-white font-bold uppercase tracking-wider block mb-3">Localisation</span>
+          <p class="text-zinc-300 text-sm font-sans leading-relaxed">
+            Studio : Quartier de la Pompignane, 34000 Montpellier.<br>
+            À Domicile : Montpellier, Castelnau-le-Lez, Lattes, Clapiers, Le Crès, Pérols.
+          </p>
+        </div>
+
+        <div>
+          <span class="text-white font-bold uppercase tracking-wider block mb-3">Contact & Réseaux</span>
+          <ul class="space-y-2 text-sm">
+            <li>📞 WhatsApp : <a href="https://wa.me/33616392658" class="text-white hover:text-brand-magenta font-semibold underline">06 16 39 26 58</a></li>
+            <li>✉️ Email : <a href="mailto:blvckbeats808@gmail.com" class="text-zinc-200 hover:text-brand-magenta underline">blvckbeats808@gmail.com</a></li>
+            <li>📸 Instagram : <a href="https://www.instagram.com/__alexblacki/" target="_blank" rel="noopener noreferrer" class="text-zinc-200 hover:text-pink-400 underline">@__alexblacki</a></li>
+            <li>▶ YouTube : <a href="https://www.youtube.com/@alkapoze" target="_blank" rel="noopener noreferrer" class="text-zinc-200 hover:text-red-400 underline">@alkapoze (Prods guitare)</a></li>
+            <li>🎧 Spotify : <a href="https://open.spotify.com/intl-fr/track/5J2Dx5tuupjgsaWCSnJFGn?si=00b9445e3521482c" target="_blank" rel="noopener noreferrer" class="text-emerald-400 hover:underline font-bold">Herbo (Écouter le titre)</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pt-8 border-t border-zinc-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-400">
+        <div>
+          © 2026 L'Atelier des Cordes — Fondé par Alexandre Herbin. Tous droits réservés.
+        </div>
+        <div class="flex items-center gap-6">
+          <a href="#" data-open-modal="modal-mentions" class="hover:text-white underline">Mentions Légales & RGPD</a>
+          <a href="#" data-open-modal="modal-charte" class="hover:text-white underline">Charte Mineurs & Streaming</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MODALE 1 : MENTIONS LÉGALES & RGPD -->
+  <div id="modal-mentions" class="legal-modal fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4">
+    <div class="bg-brand-surface border border-zinc-700 max-w-2xl w-full max-h-[85vh] rounded-3xl p-6 sm:p-8 overflow-y-auto text-zinc-200 text-sm space-y-4">
+      <div class="flex items-center justify-between border-b border-zinc-700 pb-3">
+        <h3 class="font-display font-black text-xl text-white">Mentions Légales & Politique de Confidentialité</h3>
+        <button data-close-modal class="text-zinc-400 hover:text-white text-xl">✕</button>
+      </div>
+      <p><strong>Éditeur du site :</strong> Alexandre Herbin, agissant pour le projet L'Atelier des Cordes. Domicilié à Montpellier (34000). Contact : blvckbeats808@gmail.com / 06 16 39 26 58.</p>
+      <p><strong>Hébergement :</strong> Serveurs sécurisés avec protocole HTTPS / SSL.</p>
+      <p><strong>Protection des données personnelles (RGPD) :</strong> Les données collectées via le formulaire de candidature (nom, prénom de l'enfant, téléphone, email) sont strictement réservées à l'étude des candidatures et à l'organisation de la séance d'essai. Elles ne sont en aucun cas commercialisées ou transmises à des tiers.</p>
+      <p>Conformément au RGPD, vous disposez d'un droit d'accès, de rectification et de suppression de vos données en écrivant à blvckbeats808@gmail.com.</p>
+    </div>
+  </div>
+
+  <!-- MODALE 2 : CHARTE MINEURS & STREAMING SPOTIFY -->
+  <div id="modal-charte" class="legal-modal fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4">
+    <div class="bg-brand-surface border border-zinc-700 max-w-2xl w-full max-h-[85vh] rounded-3xl p-6 sm:p-8 overflow-y-auto text-zinc-200 text-sm space-y-4">
+      <div class="flex items-center justify-between border-b border-zinc-700 pb-3">
+        <h3 class="font-display font-black text-xl text-white">Charte de Protection des Mineurs & Streaming</h3>
+        <button data-close-modal class="text-zinc-400 hover:text-white text-xl">✕</button>
+      </div>
+      <p><strong>Cadre Pédagogique :</strong> Le Projet Signature Spotify est une initiative d'éveil artistique et pédagogique. L'enregistrement en studio et la diffusion numérique ont pour but de valoriser l'apprentissage et de concrétiser les progrès des élèves.</p>
+      <p><strong>Droit à l'image et respect de la vie privée :</strong> Afin de garantir la protection absolue des élèves mineurs, aucune photo de visage reconnaissable ni aucun nom de famille ne sont publiés sans accord explicite des représentants légaux. Les morceaux sont crédités avec le prénom ou un pseudonyme artistique choisi par l'enfant.</p>
+      <p><strong>Décharge Parentale :</strong> Une convention parentale écrite est signée avant toute diffusion officielle sur les plateformes de streaming (Spotify, Apple Music, Deezer).</p>
+      <p><strong>Licences et Droits d'Auteur :</strong> Pour les reprises (covers) de morceaux existants, les redevances mécaniques de distribution numérique sont intégralement prises en charge par L'Atelier des Cordes via des distributeurs agréés.</p>
+    </div>
+  </div>
+
+  <!-- Scripts JavaScript -->
+  <script src="js/audio-demo.js"></script>
+  <script src="js/casting.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
