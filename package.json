@@ -1,0 +1,15 @@
+{
+  "name": "atelier-des-cordes",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Le Labo des Cordes — École de guitare moderne & studio de production musicale à Montpellier (Pompignane)",
+  "scripts": {
+    "dev": "vite",
+    "prebuild": "mkdir -p public/js public/assets/audio public/css && cp -r js/* public/js/ 2>/dev/null || true; cp -r assets/* public/assets/ 2>/dev/null || true; cp -r css/* public/css/ 2>/dev/null || true",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^6.0.0"
+  }
+}

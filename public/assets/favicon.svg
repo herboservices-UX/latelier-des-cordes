@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF007F" />
+      <stop offset="50%" stop-color="#FF5E00" />
+      <stop offset="100%" stop-color="#8B5CF6" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+  <!-- Background Shield / Pick -->
+  <path d="M32 4 C48 4 58 16 58 32 C58 48 38 58 32 60 C26 58 6 48 6 32 C6 16 16 4 32 4 Z" fill="#0B0D13" stroke="url(#grad)" stroke-width="2.5" />
+  <!-- Sound Wave / Guitar strings -->
+  <path d="M20 32 L20 32 M26 24 L26 40 M32 16 L32 48 M38 22 L38 42 M44 30 L44 34" stroke="url(#grad)" stroke-width="3" stroke-linecap="round" filter="url(#glow)" />
+</svg>
