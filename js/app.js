@@ -47,21 +47,29 @@ function initSpotifyMockup() {
   const playToggleBtn = document.getElementById('spotify-mock-play');
 
   const coverPresets = {
+    blues: {
+      gradient: 'from-amber-700 via-amber-900 to-stone-950',
+      tag: '🎷 Blues & Solo Soul'
+    },
     rock: {
       gradient: 'from-amber-600 via-red-600 to-purple-900',
-      tag: '🔥 Rock / Riffs'
-    },
-    anime: {
-      gradient: 'from-pink-500 via-purple-600 to-indigo-900',
-      tag: '🌸 Anime & Gaming'
-    },
-    drill: {
-      gradient: 'from-zinc-800 via-purple-950 to-black',
-      tag: '⚡ Drill Acoustique 808'
+      tag: '🔥 Rock & Power Riffs'
     },
     pop: {
       gradient: 'from-orange-400 via-pink-500 to-rose-700',
       tag: '✨ Pop & Melodies'
+    },
+    hiphop: {
+      gradient: 'from-purple-900 via-zinc-900 to-black',
+      tag: '⚡ Rap & Hip-Hop 808'
+    },
+    rnb: {
+      gradient: 'from-violet-600 via-fuchsia-800 to-indigo-950',
+      tag: '💎 R&B & Neo-Soul'
+    },
+    anime: {
+      gradient: 'from-pink-500 via-purple-600 to-indigo-900',
+      tag: '🌸 Anime & Gaming'
     }
   };
 

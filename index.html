@@ -264,7 +264,7 @@
 
             <!-- SOUS-TITRE DE VALEUR -->
             <p class="text-base sm:text-lg text-zinc-200 leading-relaxed font-normal mb-8 max-w-xl">
-              Pour enfants et adolescents (7 à 17 ans). Pratique immédiate sur leurs morceaux préférés, zéro théorie rébarbative, et <strong class="text-white font-bold underline decoration-brand-magenta decoration-2">sortie officielle d'un premier titre sur Spotify</strong> chaque trimestre. Au Studio (Pompignane) ou directement à votre domicile.
+              Pour enfants et adolescents (7 à 17 ans). Du blues authentique aux riffs rock, des refrains pop aux beats rap, hip-hop et grooves R&B : pratique immédiate sur leurs morceaux préférés, zéro théorie rébarbative, et <strong class="text-white font-bold underline decoration-brand-magenta decoration-2">sortie officielle d'un premier titre sur Spotify</strong> chaque trimestre. Au Studio (Pompignane) ou directement à votre domicile.
             </p>
 
             <!-- BOUTONS D'ACTION DIRECTS -->
@@ -395,7 +395,7 @@
               Leur musique, pas celle des manuels
             </h3>
             <p class="text-base text-zinc-200 leading-relaxed font-normal">
-              L'élève choisit ses morceaux : intros de mangas/animes (Naruto, Demon Slayer), musiques de jeux vidéo (Zelda, Mario), pop actuelle (Taylor Swift, Billie Eilish), rock légendaire (Nirvana, AC/DC) ou mélodies acoustiques drill/rap.
+              L'élève choisit ses morceaux : solos de blues habités, riffs rock légendaires (Nirvana, AC/DC, Hendrix), refrains pop actuels (Billie Eilish, Olivia Rodrigo), boucles de guitare rap & hip-hop 808, grooves R&B modernes ou thèmes de mangas et jeux vidéo (Naruto, Zelda).
             </p>
             <div class="mt-6 pt-4 border-t border-zinc-700 text-sm font-mono font-bold text-brand-magenta">
               ✓ Apprentissage direct des riffs cultes
@@ -513,10 +513,12 @@
               <div>
                 <label class="block text-sm font-mono uppercase font-bold text-zinc-200 mb-1.5">Style de la pochette</label>
                 <select id="mockup-genre-select" class="w-full bg-zinc-900 border border-zinc-600 rounded-xl px-4 py-3 text-white text-base focus:outline-none focus:border-brand-magenta">
-                  <option value="rock">🔥 Rock / Guitare Électrique</option>
-                  <option value="anime">🌸 Anime & Gaming (Lofi / OST)</option>
-                  <option value="drill">⚡ Drill Acoustique & Hip-Hop 808</option>
-                  <option value="pop">✨ Pop & Guitare Acoustique Moderne</option>
+                  <option value="blues">🎷 Blues & Solo Soul</option>
+                  <option value="rock">🔥 Rock & Power Chords</option>
+                  <option value="pop">✨ Pop & Guitare Acoustique</option>
+                  <option value="hiphop">⚡ Rap & Hip-Hop 808</option>
+                  <option value="rnb">💎 R&B & Neo-Soul</option>
+                  <option value="anime">🌸 Anime & Gaming (OST)</option>
                 </select>
               </div>
 
@@ -819,11 +821,41 @@
                 Âgé de <strong class="text-white font-bold">26 ans</strong> et pratiquant la guitare depuis plus de <strong class="text-white font-bold">14 ans</strong>, Alexandre allie l'amour de la scène instrumentale vivante à la maîtrise des outils de production modernes.
               </p>
               <p>
+                Son univers musical fait le pont entre les racines vivantes de la guitare et les productions urbaines actuelles : le <strong class="text-amber-400 font-bold">Blues</strong> pour le toucher et l'expressivité, le <strong class="text-red-400 font-bold">Rock</strong> pour l'énergie des riffs, la <strong class="text-pink-400 font-bold">Pop</strong> pour le sens des mélodies accrocheuses, et le <strong class="text-brand-magenta font-bold">Rap</strong>, le <strong class="text-brand-cyan font-bold">Hip-Hop</strong> et le <strong class="text-purple-400 font-bold">R&B</strong> pour la modernité rythmique, les basses 808 et la spatialisation studio.
+              </p>
+              <p>
                 Actif sous le pseudonyme de producteur <strong class="text-brand-magenta font-bold">blvckbeats808</strong> et artiste sous le nom de <strong class="text-brand-orange font-bold">Herbo</strong> sur Spotify, ses compositions instrumentales et beats de guitare voyagent et sont vendus à l'international — notamment auprès d'artistes et rappeurs aux <strong class="text-white font-bold">États-Unis (Nashville, Tennessee)</strong> et en Europe.
               </p>
               <p>
                 À L'Atelier des Cordes, il supervise personnellement chaque étape pédagogique et prend en charge le mixage studio de chaque élève avec les mêmes convertisseurs, compresseurs et exigences acoustiques que pour ses projets diffusés outre-Atlantique.
               </p>
+
+              <!-- Badges des Styles Musicaux Enseignés -->
+              <div class="pt-3">
+                <span class="text-xs font-mono font-bold text-zinc-400 uppercase tracking-wider block mb-2.5">
+                  🎸 Styles & Répertoires Transmis aux Élèves :
+                </span>
+                <div class="flex flex-wrap gap-2 text-xs font-mono font-bold">
+                  <span class="px-3 py-1.5 rounded-xl bg-amber-500/15 border border-amber-500/40 text-amber-300">
+                    🎷 Blues
+                  </span>
+                  <span class="px-3 py-1.5 rounded-xl bg-red-500/15 border border-red-500/40 text-red-300">
+                    🎸 Rock
+                  </span>
+                  <span class="px-3 py-1.5 rounded-xl bg-pink-500/15 border border-pink-500/40 text-pink-300">
+                    ✨ Pop
+                  </span>
+                  <span class="px-3 py-1.5 rounded-xl bg-purple-500/15 border border-purple-500/40 text-purple-300">
+                    ⚡ Rap
+                  </span>
+                  <span class="px-3 py-1.5 rounded-xl bg-cyan-500/15 border border-cyan-500/40 text-cyan-300">
+                    🎧 Hip-Hop
+                  </span>
+                  <span class="px-3 py-1.5 rounded-xl bg-violet-500/15 border border-violet-500/40 text-violet-300">
+                    💎 R&B / Neo-Soul
+                  </span>
+                </div>
+              </div>
             </div>
 
             <!-- Hub Réseaux & Médias Officiels d'Alexandre Herbin -->
@@ -1095,29 +1127,32 @@
               <p class="text-sm text-zinc-200 font-medium">Sélectionnez les genres qu'il écoute le plus :</p>
               
               <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                <button type="button" data-genre="Rock / Hard Rock" class="genre-tag-btn p-4 rounded-xl border border-zinc-600 bg-zinc-800 text-zinc-100 text-sm font-mono font-bold text-left transition-all hover:border-brand-magenta">
-                  🎸 Rock / Metal
+                <button type="button" data-genre="Rock & Hard Rock" class="genre-tag-btn p-4 rounded-xl border border-zinc-600 bg-zinc-800 text-zinc-100 text-sm font-mono font-bold text-left transition-all hover:border-brand-magenta">
+                  🎸 Rock & Hard Rock
                 </button>
-                <button type="button" data-genre="Anime & Gaming" class="genre-tag-btn p-4 rounded-xl border border-zinc-600 bg-zinc-800 text-zinc-100 text-sm font-mono font-bold text-left transition-all hover:border-brand-magenta">
-                  🌸 Anime / Jeux Vidéo
+                <button type="button" data-genre="Rap & Hip-Hop" class="genre-tag-btn p-4 rounded-xl border border-zinc-600 bg-zinc-800 text-zinc-100 text-sm font-mono font-bold text-left transition-all hover:border-brand-magenta">
+                  ⚡ Rap & Hip-Hop (808)
                 </button>
-                <button type="button" data-genre="Rap / Drill Acoustique" class="genre-tag-btn p-4 rounded-xl border border-zinc-600 bg-zinc-800 text-zinc-100 text-sm font-mono font-bold text-left transition-all hover:border-brand-magenta">
-                  ⚡ Rap / Drill / 808
+                <button type="button" data-genre="Blues" class="genre-tag-btn p-4 rounded-xl border border-zinc-600 bg-zinc-800 text-zinc-100 text-sm font-mono font-bold text-left transition-all hover:border-brand-magenta">
+                  🎷 Blues Authentique
                 </button>
-                <button type="button" data-genre="Pop & Variété" class="genre-tag-btn p-4 rounded-xl border border-zinc-600 bg-zinc-800 text-zinc-100 text-sm font-mono font-bold text-left transition-all hover:border-brand-magenta">
+                <button type="button" data-genre="R&B & Neo-Soul" class="genre-tag-btn p-4 rounded-xl border border-zinc-600 bg-zinc-800 text-zinc-100 text-sm font-mono font-bold text-left transition-all hover:border-brand-magenta">
+                  💎 R&B & Neo-Soul
+                </button>
+                <button type="button" data-genre="Pop & Chanson" class="genre-tag-btn p-4 rounded-xl border border-zinc-600 bg-zinc-800 text-zinc-100 text-sm font-mono font-bold text-left transition-all hover:border-brand-magenta">
                   ✨ Pop & Chanson
                 </button>
-                <button type="button" data-genre="Musiques de Films" class="genre-tag-btn p-4 rounded-xl border border-zinc-600 bg-zinc-800 text-zinc-100 text-sm font-mono font-bold text-left transition-all hover:border-brand-magenta">
-                  🎬 Musiques de Films
+                <button type="button" data-genre="Anime & Gaming" class="genre-tag-btn p-4 rounded-xl border border-zinc-600 bg-zinc-800 text-zinc-100 text-sm font-mono font-bold text-left transition-all hover:border-brand-magenta">
+                  🌸 Anime & Gaming (OST)
                 </button>
-                <button type="button" data-genre="Curieux de tout" class="genre-tag-btn p-4 rounded-xl border border-zinc-600 bg-zinc-800 text-zinc-100 text-sm font-mono font-bold text-left transition-all hover:border-brand-magenta">
-                  🌍 Curieux de tout
+                <button type="button" data-genre="Curieux de tout" class="genre-tag-btn sm:col-span-3 p-3.5 rounded-xl border border-zinc-600 bg-zinc-800 text-zinc-100 text-sm font-mono font-bold text-center transition-all hover:border-brand-magenta">
+                  🌍 Curieux de tout & improvisation
                 </button>
               </div>
 
               <div>
                 <label class="block text-sm font-mono uppercase font-bold text-zinc-200 mb-2">Artistes, groupes ou morceaux préférés (Optionnel)</label>
-                <input id="funnel-artists" type="text" placeholder="Ex: Nirvana, Billie Eilish, Naruto OST, Gazo..." class="w-full bg-zinc-900 border border-zinc-600 rounded-xl px-4 py-3.5 text-white text-base focus:outline-none focus:border-brand-magenta">
+                <input id="funnel-artists" type="text" placeholder="Ex: Jimi Hendrix, Nirvana, The Weeknd, Travis Scott, Billie Eilish, Gary Moore..." class="w-full bg-zinc-900 border border-zinc-600 rounded-xl px-4 py-3.5 text-white text-base focus:outline-none focus:border-brand-magenta">
               </div>
             </div>
 
