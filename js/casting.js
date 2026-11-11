@@ -67,9 +67,13 @@ class CastingFunnel {
         this.formData.formula = formula;
 
         const homeAddressBox = document.getElementById('funnel-home-address-box');
+        const postalInput = document.getElementById('funnel-postal-code');
         if (homeAddressBox) {
-          if (formula === 'domicile') {
+          if (formula === 'domicile' || formula === 'mas-devron') {
             homeAddressBox.classList.remove('hidden');
+            if (formula === 'mas-devron' && postalInput && !postalInput.value) {
+              postalInput.value = 'Quartier Mas Drevon, 34070 Montpellier';
+            }
           } else {
             homeAddressBox.classList.add('hidden');
           }
@@ -216,20 +220,27 @@ class CastingFunnel {
 
     // Construction du message WhatsApp prêt à envoyer
     const genresStr = this.formData.genres.length > 0 ? this.formData.genres.join(', ') : 'Ouvert à tout';
-    const formulaStr = this.formData.formula === 'studio' ? 'En Studio (Montpellier Pompignane)' : `À Domicile (${this.formData.postalCode})`;
+    
+    let formulaStr = 'En Studio (Montpellier Pompignane - Alexandre Herbin)';
+    if (this.formData.formula === 'mas-devron') {
+      formulaStr = `À Domicile - Quartier Mas Drevon (Professeur Léo)${this.formData.postalCode ? ' [' + this.formData.postalCode + ']' : ''}`;
+    } else if (this.formData.formula === 'domicile') {
+      formulaStr = `À Domicile (${this.formData.postalCode || 'Montpellier Métropole'})`;
+    }
     
     const waText = encodeURIComponent(
-      `🎸 *Candidature Cours d'essai - L'Atelier des Cordes*\n\n` +
+      `🎸 *Réservation Téléphonique Cours d'essai - Le Labo des Cordes*\n\n` +
+      `📞 *Réservation demandée au standard :* 06 16 39 26 58\n\n` +
       `👤 *Parent :* ${this.formData.parentName}\n` +
-      `📞 *Tél :* ${this.formData.phone}\n` +
+      `📱 *Tél parent :* ${this.formData.phone}\n` +
       `✉️ *Email :* ${this.formData.email}\n\n` +
       `👦 *Élève :* ${this.formData.childName} (${this.formData.childAge} ans)\n` +
       `🎯 *Niveau :* ${this.formData.level}\n` +
-      `🎧 *Univers musical :* ${genresStr} (Artistes: ${this.formData.favoriteArtists})\n` +
-      `📍 *Formule :* ${formulaStr}\n` +
+      `🎧 *Univers musical :* ${genresStr} (Artistes: ${this.formData.favoriteArtists || 'Non précisé'})\n` +
+      `📍 *Formule choisie :* ${formulaStr}\n` +
       `⏰ *Créneau souhaité :* ${this.formData.slot}\n` +
-      (this.formData.message ? `📝 *Note :* ${this.formData.message}\n\n` : '\n') +
-      `_Envoyé depuis le site atelierdescordes.fr_`
+      (this.formData.message ? `📝 *Note / Question :* ${this.formData.message}\n\n` : '\n') +
+      `_Envoyé depuis le site officiel lelabodescordes.fr_`
     );
 
     const waUrl = `https://wa.me/33616392658?text=${waText}`;

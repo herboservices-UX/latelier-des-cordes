@@ -49,27 +49,27 @@ function initSpotifyMockup() {
   const coverPresets = {
     blues: {
       gradient: 'from-amber-700 via-amber-900 to-stone-950',
-      tag: '🎷 Blues & Solo Soul'
+      tag: 'Blues & Solo Soul'
     },
     rock: {
       gradient: 'from-amber-600 via-red-600 to-purple-900',
-      tag: '🔥 Rock & Power Riffs'
+      tag: 'Rock & Power Riffs'
     },
     pop: {
       gradient: 'from-orange-400 via-pink-500 to-rose-700',
-      tag: '✨ Pop & Melodies'
+      tag: 'Pop & Melodies'
     },
     hiphop: {
       gradient: 'from-purple-900 via-zinc-900 to-black',
-      tag: '⚡ Rap & Hip-Hop 808'
+      tag: 'Rap & Hip-Hop 808'
     },
     rnb: {
       gradient: 'from-violet-600 via-fuchsia-800 to-indigo-950',
-      tag: '💎 R&B & Neo-Soul'
+      tag: 'R&B & Neo-Soul'
     },
     anime: {
       gradient: 'from-pink-500 via-purple-600 to-indigo-900',
-      tag: '🌸 Anime & Gaming'
+      tag: 'Anime & Gaming'
     }
   };
 
@@ -79,7 +79,7 @@ function initSpotifyMockup() {
     const genre = genreSelect ? genreSelect.value : 'rock';
 
     if (displayArtist) {
-      displayArtist.textContent = `${artist} (L'Atelier des Cordes)`;
+      displayArtist.textContent = `${artist} (Le Labo des Cordes)`;
     }
     if (displayTitle) {
       displayTitle.textContent = title;
@@ -101,10 +101,10 @@ function initSpotifyMockup() {
       if (isPlaying) {
         vinylDisc.classList.remove('animate-spin-slow-paused');
         vinylDisc.classList.add('animate-spin-slow');
-        playToggleBtn.innerHTML = '⏸ Pause';
+        playToggleBtn.innerHTML = '<svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>';
       } else {
         vinylDisc.classList.add('animate-spin-slow-paused');
-        playToggleBtn.innerHTML = '▶ Play';
+        playToggleBtn.innerHTML = '<svg class="w-3.5 h-3.5 fill-current ml-0.5" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
       }
     });
   }

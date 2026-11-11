@@ -1,7 +1,7 @@
 /**
- * L'Atelier des Cordes - Comparateur Audio A/B
- * Permet d'écouter la différence entre une prise brute smartphone et le mix studio pro
- * Utilise la Web Audio API pour synthétiser un riff de guitare moderne et son beat 808
+ * Le Labo des Cordes - Comparateur Audio A/B Réel
+ * Permet d'écouter la différence entre la prise brute smartphone ("To The Star - Raw")
+ * et la version finale mixée & masterisée au studio par Alexandre Herbin blvckbeats808 ("Flying Away")
  */
 
 class AudioComparisonPlayer {
@@ -9,12 +9,25 @@ class AudioComparisonPlayer {
     this.audioCtx = null;
     this.isPlaying = false;
     this.currentMode = 'studio'; // 'smartphone' or 'studio'
-    this.intervalId = null;
-    this.chordStep = 0;
     this.analyser = null;
     this.canvas = null;
     this.canvasCtx = null;
     this.animFrame = null;
+
+    // Éléments audio HTML5 réels
+    this.audioRaw = new Audio('assets/audio/smartphone-raw.m4a');
+    this.audioRaw.loop = true;
+    this.audioRaw.preload = 'auto';
+
+    this.audioStudio = new Audio('assets/audio/studio-final.m4a');
+    this.audioStudio.loop = true;
+    this.audioStudio.preload = 'auto';
+
+    this.gainRaw = null;
+    this.gainStudio = null;
+    this.sourceRaw = null;
+    this.sourceStudio = null;
+    this.nodesConnected = false;
 
     this.initDOM();
   }
@@ -30,6 +43,7 @@ class AudioComparisonPlayer {
 
     if (this.canvas) {
       this.canvasCtx = this.canvas.getContext('2d');
+      this.drawIdleVisualizer();
     }
 
     if (this.playBtn) {
@@ -43,35 +57,89 @@ class AudioComparisonPlayer {
     if (this.modeStudioBtn) {
       this.modeStudioBtn.addEventListener('click', () => this.setMode('studio'));
     }
+
+    // Gestion de la fin de piste ou pause
+    this.audioRaw.addEventListener('ended', () => {
+      if (this.currentMode === 'smartphone' && !this.audioRaw.loop) this.stop();
+    });
+    this.audioStudio.addEventListener('ended', () => {
+      if (this.currentMode === 'studio' && !this.audioStudio.loop) this.stop();
+    });
   }
 
-  initAudioContext() {
+  initAudioGraph() {
     if (!this.audioCtx) {
       const AudioContext = window.AudioContext || window.webkitAudioContext;
       this.audioCtx = new AudioContext();
 
       this.analyser = this.audioCtx.createAnalyser();
       this.analyser.fftSize = 64;
-      this.analyser.connect(this.audioCtx.destination);
+
+      try {
+        if (!this.nodesConnected) {
+          this.sourceRaw = this.audioCtx.createMediaElementSource(this.audioRaw);
+          this.sourceStudio = this.audioCtx.createMediaElementSource(this.audioStudio);
+
+          this.gainRaw = this.audioCtx.createGain();
+          this.gainStudio = this.audioCtx.createGain();
+
+          this.sourceRaw.connect(this.gainRaw);
+          this.sourceStudio.connect(this.gainStudio);
+
+          this.gainRaw.connect(this.analyser);
+          this.gainStudio.connect(this.analyser);
+
+          this.analyser.connect(this.audioCtx.destination);
+          this.nodesConnected = true;
+        }
+      } catch (err) {
+        console.warn('MediaElementSource fallback:', err);
+      }
     }
-    if (this.audioCtx.state === 'suspended') {
+
+    if (this.audioCtx && this.audioCtx.state === 'suspended') {
       this.audioCtx.resume();
+    }
+
+    this.applyGains();
+  }
+
+  applyGains() {
+    if (this.gainRaw && this.gainStudio && this.audioCtx) {
+      const now = this.audioCtx.currentTime;
+      if (this.currentMode === 'smartphone') {
+        this.gainRaw.gain.setValueAtTime(1.0, now);
+        this.gainStudio.gain.setValueAtTime(0.0, now);
+      } else {
+        this.gainRaw.gain.setValueAtTime(0.0, now);
+        this.gainStudio.gain.setValueAtTime(1.0, now);
+      }
+    } else {
+      // Fallback direct sur le volume des éléments audio HTML5
+      if (this.currentMode === 'smartphone') {
+        this.audioRaw.volume = 1.0;
+        this.audioStudio.volume = 0.0;
+      } else {
+        this.audioRaw.volume = 0.0;
+        this.audioStudio.volume = 1.0;
+      }
     }
   }
 
   setMode(mode) {
     this.currentMode = mode;
+
     if (this.modeSmartphoneBtn && this.modeStudioBtn) {
       if (mode === 'smartphone') {
         this.modeSmartphoneBtn.classList.add('bg-zinc-800', 'text-white', 'border-zinc-500');
         this.modeSmartphoneBtn.classList.remove('bg-transparent', 'text-zinc-400', 'border-transparent');
-        
+
         this.modeStudioBtn.classList.remove('bg-gradient-to-r', 'from-pink-600', 'to-orange-500', 'text-white', 'shadow-lg');
         this.modeStudioBtn.classList.add('bg-transparent', 'text-zinc-400', 'border-transparent');
 
         if (this.modeBadge) {
-          this.modeBadge.innerHTML = '📱 <strong>Prise Smartphone</strong> (Son brut, étouffé, chambre)';
-          this.modeBadge.className = 'text-xs px-3 py-1.5 rounded-full bg-zinc-800/80 text-zinc-300 border border-zinc-700 font-mono inline-block';
+          this.modeBadge.innerHTML = '<svg class="w-3.5 h-3.5 stroke-current fill-none shrink-0" stroke-width="2" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg><span><strong>Prise Brute</strong> (To The Star • Raw)</span>';
+          this.modeBadge.className = 'text-xs px-3 py-1.5 rounded-full bg-zinc-800/80 text-zinc-300 border border-zinc-700 font-mono inline-flex items-center gap-1.5';
         }
       } else {
         this.modeStudioBtn.classList.add('bg-gradient-to-r', 'from-pink-600', 'to-orange-500', 'text-white', 'shadow-lg');
@@ -81,15 +149,25 @@ class AudioComparisonPlayer {
         this.modeSmartphoneBtn.classList.add('bg-transparent', 'text-zinc-400', 'border-transparent');
 
         if (this.modeBadge) {
-          this.modeBadge.innerHTML = '✨ <strong>Mix Studio Pro</strong> (Mixé par Alexandre Herbin blvckbeats808)';
-          this.modeBadge.className = 'text-xs px-3 py-1.5 rounded-full bg-gradient-to-r from-pink-500/20 to-orange-500/20 text-pink-300 border border-pink-500/40 font-mono inline-block';
+          this.modeBadge.innerHTML = '<svg class="w-3.5 h-3.5 fill-current text-pink-400 shrink-0" viewBox="0 0 24 24"><path d="M12 2l2.4 7.2h7.6l-6.1 4.5 2.3 7.1-6.2-4.5-6.2 4.5 2.3-7.1-6.1-4.5h7.6z"/></svg><span><strong>Mix Studio Pro</strong> (Flying Away • Master blvckbeats808)</span>';
+          this.modeBadge.className = 'text-xs px-3 py-1.5 rounded-full bg-gradient-to-r from-pink-500/20 to-orange-500/20 text-pink-300 border border-pink-500/40 font-mono inline-flex items-center gap-1.5';
         }
       }
+    }
+
+    if (this.isPlaying) {
+      // Synchronisation du temps de lecture lors de la bascule
+      if (mode === 'smartphone' && this.audioStudio.duration > 0) {
+        this.audioRaw.currentTime = this.audioStudio.currentTime % (this.audioRaw.duration || 24);
+      } else if (mode === 'studio' && this.audioRaw.duration > 0) {
+        this.audioStudio.currentTime = this.audioRaw.currentTime % (this.audioStudio.duration || 16);
+      }
+      this.applyGains();
     }
   }
 
   togglePlay() {
-    this.initAudioContext();
+    this.initAudioGraph();
     if (this.isPlaying) {
       this.stop();
     } else {
@@ -99,149 +177,46 @@ class AudioComparisonPlayer {
 
   start() {
     this.isPlaying = true;
-    if (this.playIcon) this.playIcon.innerHTML = '⏸';
+    if (this.playIcon) this.playIcon.innerHTML = '<svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>';
     if (this.playText) this.playText.textContent = 'Mettre en pause';
-    this.chordStep = 0;
-    this.playChordPattern();
-    this.intervalId = setInterval(() => this.playChordPattern(), 1600);
+
+    this.applyGains();
+
+    const p1 = this.audioRaw.play();
+    const p2 = this.audioStudio.play();
+
+    if (p1 && p1.catch) p1.catch(e => console.warn('Play raw:', e));
+    if (p2 && p2.catch) p2.catch(e => console.warn('Play studio:', e));
+
     this.renderVisualizer();
   }
 
   stop() {
     this.isPlaying = false;
-    if (this.playIcon) this.playIcon.innerHTML = '▶';
-    if (this.playText) this.playText.textContent = 'Écouter le comparatif';
-    if (this.intervalId) {
-      clearInterval(this.intervalId);
-      this.intervalId = null;
-    }
+    if (this.playIcon) this.playIcon.innerHTML = '<svg class="w-3.5 h-3.5 fill-current ml-0.5" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
+    if (this.playText) this.playText.textContent = 'Écouter le comparatif sonore';
+
+    this.audioRaw.pause();
+    this.audioStudio.pause();
+
     if (this.animFrame) {
       cancelAnimationFrame(this.animFrame);
     }
     this.drawIdleVisualizer();
   }
 
-  playChordPattern() {
-    if (!this.audioCtx || !this.isPlaying) return;
-
-    // Progression d'accords mélodiques modernes (Em9 -> Cmaj7 -> G -> Dsus4)
-    const chordProgressions = [
-      [164.81, 246.94, 329.63, 392.00, 493.88], // Em9
-      [130.81, 196.00, 246.94, 329.63, 392.00], // Cmaj7
-      [196.00, 246.94, 293.66, 392.00, 587.33], // G
-      [146.83, 220.00, 293.66, 392.00, 440.00]  // Dsus4
-    ];
-
-    const currentNotes = chordProgressions[this.chordStep % chordProgressions.length];
-    this.chordStep++;
-
-    const now = this.audioCtx.currentTime;
-
-    // Arpèges de guitare
-    currentNotes.forEach((freq, idx) => {
-      this.playGuitarPluck(freq, now + idx * 0.12, this.currentMode === 'studio');
-    });
-
-    // En mode Studio : on ajoute une basse 808 chaude et un beat trap/lofi acoustique
-    if (this.currentMode === 'studio') {
-      const rootFreq = currentNotes[0] / 2;
-      this.play808Sub(rootFreq, now);
-      this.playSnare(now + 0.8);
-      this.playHiHat(now + 0.4);
-      this.playHiHat(now + 1.2);
-    }
-  }
-
-  playGuitarPluck(freq, time, isStudio) {
-    const osc = this.audioCtx.createOscillator();
-    const gain = this.audioCtx.createGain();
-
-    osc.type = isStudio ? 'triangle' : 'sawtooth';
-    osc.frequency.setValueAtTime(freq, time);
-
-    // Filter to simulate guitar body resonance
-    const filter = this.audioCtx.createBiquadFilter();
-    if (isStudio) {
-      filter.type = 'lowpass';
-      filter.frequency.setValueAtTime(2800, time);
-      filter.frequency.exponentialRampToValueAtTime(800, time + 0.8);
-      filter.Q.value = 3.5;
-
-      gain.gain.setValueAtTime(0, time);
-      gain.gain.linearRampToValueAtTime(0.25, time + 0.02);
-      gain.gain.exponentialRampToValueAtTime(0.001, time + 1.2);
-    } else {
-      // Smartphone simulation: bandpass éthéré, boîte de conserve, résonance métallique
-      filter.type = 'bandpass';
-      filter.frequency.setValueAtTime(1400, time);
-      filter.Q.value = 1.2;
-
-      gain.gain.setValueAtTime(0, time);
-      gain.gain.linearRampToValueAtTime(0.18, time + 0.03);
-      gain.gain.exponentialRampToValueAtTime(0.001, time + 0.7);
-    }
-
-    osc.connect(filter);
-    filter.connect(gain);
-    gain.connect(this.analyser);
-
-    osc.start(time);
-    osc.stop(time + 1.3);
-  }
-
-  play808Sub(freq, time) {
-    const osc = this.audioCtx.createOscillator();
-    const gain = this.audioCtx.createGain();
-
-    osc.type = 'sine';
-    osc.frequency.setValueAtTime(freq * 1.5, time);
-    osc.frequency.exponentialRampToValueAtTime(freq * 0.8, time + 0.15);
-
-    gain.gain.setValueAtTime(0.35, time);
-    gain.gain.exponentialRampToValueAtTime(0.001, time + 0.9);
-
-    osc.connect(gain);
-    gain.connect(this.analyser);
-
-    osc.start(time);
-    osc.stop(time + 1.0);
-  }
-
-  playSnare(time) {
-    const osc = this.audioCtx.createOscillator();
-    const gain = this.audioCtx.createGain();
-    osc.type = 'triangle';
-    osc.frequency.setValueAtTime(180, time);
-    gain.gain.setValueAtTime(0.2, time);
-    gain.gain.exponentialRampToValueAtTime(0.01, time + 0.15);
-    osc.connect(gain);
-    gain.connect(this.analyser);
-    osc.start(time);
-    osc.stop(time + 0.16);
-  }
-
-  playHiHat(time) {
-    const osc = this.audioCtx.createOscillator();
-    const gain = this.audioCtx.createGain();
-    osc.type = 'highpass' in osc ? 'highpass' : 'sine';
-    osc.frequency.setValueAtTime(6000, time);
-    gain.gain.setValueAtTime(0.08, time);
-    gain.gain.exponentialRampToValueAtTime(0.001, time + 0.05);
-    osc.connect(gain);
-    gain.connect(this.analyser);
-    osc.start(time);
-    osc.stop(time + 0.06);
-  }
-
   renderVisualizer() {
-    if (!this.canvas || !this.analyser) return;
+    if (!this.canvas) return;
 
-    const bufferLength = this.analyser.frequencyBinCount;
+    const bufferLength = (this.analyser && this.analyser.frequencyBinCount) || 32;
     const dataArray = new Uint8Array(bufferLength);
 
     const draw = () => {
       this.animFrame = requestAnimationFrame(draw);
-      this.analyser.getByteFrequencyData(dataArray);
+
+      if (this.analyser) {
+        this.analyser.getByteFrequencyData(dataArray);
+      }
 
       const width = this.canvas.width;
       const height = this.canvas.height;
@@ -251,7 +226,14 @@ class AudioComparisonPlayer {
       let x = 0;
 
       for (let i = 0; i < bufferLength; i++) {
-        const barHeight = (dataArray[i] / 255) * height * 0.9 + 4;
+        // En cas d'écoute directe sans MediaElementSource, on simule une dynamique rythmée
+        let val = dataArray[i];
+        if (!val || val === 0) {
+          const t = Date.now() * 0.005;
+          val = 90 + Math.sin(t + i * 0.4) * 60 + Math.cos(t * 1.5 + i * 0.2) * 30;
+        }
+
+        const barHeight = (val / 255) * height * 0.9 + 4;
 
         if (this.currentMode === 'studio') {
           const grad = this.canvasCtx.createLinearGradient(0, height, 0, 0);

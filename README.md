@@ -1,12 +1,12 @@
-# 🎸 L'Atelier des Cordes — Site Web Officiel
+# 🎸 Le Labo des Cordes — Guitare & Studio (Montpellier)
 
-Site vitrine haut de gamme avec système d'acquisition, de qualification et de gestion de rareté (Mobile-First) pour l'école de guitare moderne et le studio de production d'**Alexandre Herbin (blvckbeats808 / Herbo)** à **Montpellier (Pompignane)**.
+Site vitrine haut de gamme avec système d'acquisition, de qualification et de gestion de rareté (Mobile-First) pour l'école de guitare moderne et le studio de production d'**Alexandre Herbin (blvckbeats808 / Herbo)** à **Montpellier (Pompignane & Mas Drevon)**.
 
 ---
 
 ## ⚡ Caractéristiques Principales
 
-- **Punchline officielle mise en avant :** *« Vos enfants sont nés pour créer, pas pour scroller. »*
+- **Slogan officiel :** *« De leur premier riff de guitare à leur premier titre en studio. »*
 - **Direction Artistique & Couleurs :** Ambiance Studio Sunset Creative & Flashy (Magenta néon `#FF007F`, Orange incandescent `#FF5E00`, Cyber Violet `#8B5CF6`, Cyan lumineux, Dark mode profond et glassmorphism).
 - **Projet Signature Spotify :** Présentation du cursus trimestriel avec **Simulateur de Pochette Spotify en direct** (générateur de vinyle tournant et artwork personnalisé au prénom de l'élève).
 - **Comparateur Audio A/B en direct (Web Audio API) :** Permet aux parents d'écouter la différence spectaculaire entre une prise brute smartphone et un mix studio pro spatialisé avec basse 808.
@@ -75,7 +75,10 @@ Le site la détectera et l'affichera immédiatement avec un filtre studio esthé
 
 ---
 
-## 📞 Coordonnées & Configuration
-- **WhatsApp :** `06 16 39 26 58`
+## 📞 Coordonnées & Réservations
+- **Modalité de réservation :** **UNIQUEMENT PAR TÉLÉPHONE au `06 16 39 26 58`** (aucun paiement en ligne à l'aveugle, validation après échange téléphonique de 5 min).
+- **Téléphone / WhatsApp :** `06 16 39 26 58`
 - **Email :** `blvckbeats808@gmail.com`
-- **Localisation :** Quartier de la Pompignane, 34000 Montpellier
+- **Implantations & Professeurs :**
+  - **Alexandre Herbin :** Au Studio (Quartier Pompignane, 34000 Montpellier) & Secteur Est
+  - **Léo (Professeur partenaire) :** À Domicile (Quartier Mas Drevon, Croix d'Argent, Lemasson, Ovalie...)
