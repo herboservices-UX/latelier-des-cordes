@@ -312,40 +312,48 @@
               </div>
 
               <!-- Cadre Média / Artiste Studio Alexandre Herbin -->
-              <div class="aspect-[4/3] rounded-2xl bg-gradient-to-tr from-brand-magenta/20 via-zinc-900 to-brand-orange/20 border border-zinc-700/80 p-5 flex flex-col justify-between relative overflow-hidden group">
+              <div class="aspect-[4/5] sm:aspect-[3/4] rounded-2xl bg-zinc-950 border border-zinc-700/80 flex flex-col justify-between relative overflow-hidden group shadow-2xl">
                 
-                <!-- Support Photo réelle (si alexandre.jpg déposé dans assets/) -->
-                <img src="assets/alexandre.jpg" alt="Alexandre Herbin" class="w-full h-full object-cover absolute inset-0 z-0 opacity-40 group-hover:opacity-60 transition-opacity" onerror="this.style.display='none';">
+                <!-- Vraie Photo Alexandre Herbin avec Guitare Fender en Studio -->
+                <img src="assets/alexandre.jpg" alt="Alexandre Herbin - Professeur de Guitare et Producteur au studio de la Pompignane" class="w-full h-full object-cover object-top absolute inset-0 z-0 transition-transform duration-700 group-hover:scale-105">
 
-                <!-- Badge Don Herbo / blvckbeats808 -->
-                <div class="flex justify-between items-start z-10">
-                  <span class="px-3 py-1 rounded-full bg-black/80 backdrop-blur-md border border-white/20 text-xs font-mono text-white font-bold">
-                    Alexandre Herbin
+                <!-- Gradient Scrim subtil haut et bas pour lisibilité maximale sans cacher le visage ou la guitare -->
+                <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-transparent to-black/60 pointer-events-none z-10"></div>
+
+                <!-- Top badges -->
+                <div class="flex justify-between items-start z-20 p-4">
+                  <span class="px-3 py-1.5 rounded-full bg-black/80 backdrop-blur-md border border-white/20 text-xs font-mono text-white font-bold flex items-center gap-2 shadow-lg">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    Alexandre Herbin (Alex)
                   </span>
-                  <span class="px-2.5 py-1 rounded-full bg-brand-magenta/20 text-brand-magenta border border-brand-magenta/40 text-[11px] font-mono font-bold">
-                    blvckbeats808
+                  <span class="px-3 py-1.5 rounded-full bg-brand-magenta/90 text-white border border-brand-magenta text-xs font-mono font-bold shadow-lg">
+                    14 ans de Guitare
                   </span>
                 </div>
 
-                <!-- Visuel Guitare & Onde Sonore centrale -->
-                <div class="my-auto text-center z-10">
-                  <div class="w-20 h-20 mx-auto rounded-full bg-gradient-to-tr from-brand-magenta to-brand-orange p-1 shadow-2xl mb-3 group-hover:scale-105 transition-transform">
-                    <div class="w-full h-full rounded-full bg-brand-dark flex items-center justify-center text-3xl">
-                      🎸
-                    </div>
+                <!-- Bottom info live studio -->
+                <div class="z-20 p-4 space-y-3">
+                  <div>
+                    <span class="text-xs font-mono font-bold text-brand-orange uppercase tracking-wider block">
+                      Directeur Musical & Studio
+                    </span>
+                    <h3 class="font-display font-black text-2xl text-white">
+                      Alexandre Herbin
+                    </h3>
+                    <p class="text-xs text-zinc-300 font-mono">
+                      Guitariste • Beatmaker international • Quartier Pompignane
+                    </p>
                   </div>
-                  <h3 class="font-display font-bold text-xl text-white">Directeur Musical & Guitariste</h3>
-                  <p class="text-xs text-brand-orange font-mono font-medium mt-1">26 ans • Compositeur pour artistes US & Europe</p>
-                </div>
 
-                <!-- Mini waveform animée en bas -->
-                <div class="z-10 flex items-center justify-between bg-black/60 backdrop-blur-md rounded-xl p-2.5 border border-zinc-800 text-xs font-mono">
-                  <span class="text-zinc-300 flex items-center gap-2">
-                    <span class="text-brand-magenta">▶</span> Beat Nashville 808
-                  </span>
-                  <a href="https://youtu.be/925-MVwqzmA?list=RD925-MVwqzmA" target="_blank" rel="noopener noreferrer" class="text-brand-cyan hover:underline text-[11px]">
-                    Écouter sur YouTube &rarr;
-                  </a>
+                  <!-- Mini waveform / beat link -->
+                  <div class="flex items-center justify-between bg-black/80 backdrop-blur-md rounded-xl p-2.5 border border-zinc-700 text-xs font-mono">
+                    <span class="text-zinc-200 flex items-center gap-2">
+                      <span class="text-brand-magenta">▶</span> Beat Nashville 808
+                    </span>
+                    <a href="https://youtu.be/925-MVwqzmA?list=RD925-MVwqzmA" target="_blank" rel="noopener noreferrer" class="text-brand-cyan hover:underline font-bold text-[11px]">
+                      Écouter sur YouTube &rarr;
+                    </a>
+                  </div>
                 </div>
               </div>
 
@@ -921,39 +929,41 @@
 
           <!-- Colonne Card Visuelle & Références -->
           <div class="lg:col-span-5">
-            <div class="glass-card p-6 rounded-3xl border border-zinc-700 bg-brand-surface/90 relative">
-              <div class="aspect-square rounded-2xl bg-gradient-to-tr from-brand-magenta/30 via-zinc-900 to-brand-orange/20 border border-zinc-600 flex flex-col justify-between p-6 overflow-hidden relative group">
-                <!-- Image Photo réelle si présente dans assets/alexandre.jpg -->
-                <img src="assets/alexandre.jpg" alt="Alexandre Herbin" class="w-full h-full object-cover absolute inset-0 z-0 opacity-40 group-hover:opacity-60 transition-opacity" onerror="this.style.display='none';">
+            <div class="glass-card p-6 rounded-3xl border border-zinc-700 bg-brand-surface/90 relative shadow-2xl">
+              
+              <div class="aspect-[4/5] rounded-2xl bg-zinc-950 border border-zinc-600 flex flex-col justify-between relative overflow-hidden group shadow-2xl">
+                <!-- Vraie Photo Alexandre Herbin -->
+                <img src="assets/alexandre.jpg" alt="Alexandre Herbin - Professeur de guitare et producteur au studio de la Pompignane" class="w-full h-full object-cover object-top absolute inset-0 z-0 transition-transform duration-700 group-hover:scale-105">
 
-                <!-- Background guitar visual / badge -->
-                <div class="flex justify-between items-start z-10">
-                  <span class="px-3 py-1.5 rounded-full bg-black/80 backdrop-blur-md border border-white/20 text-xs font-mono text-white font-bold">
+                <!-- Gradient Scrim pour lisibilité optimale -->
+                <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-transparent to-black/60 pointer-events-none z-10"></div>
+
+                <!-- Badge haut -->
+                <div class="flex justify-between items-start z-20 p-4">
+                  <span class="px-3.5 py-1.5 rounded-full bg-black/80 backdrop-blur-md border border-white/20 text-xs font-mono text-white font-bold shadow-lg">
                     Fondateur & Lead Producer
                   </span>
-                  <span class="text-sm font-mono text-brand-magenta font-bold">
-                    14 ans de Guitare
+                  <span class="px-3.5 py-1.5 rounded-full bg-brand-orange/90 text-white font-mono text-xs font-bold shadow-md">
+                    Studio Pompignane
                   </span>
                 </div>
 
-                <div class="my-auto text-center z-10">
-                  <div class="w-24 h-24 mx-auto rounded-full bg-gradient-to-br from-brand-magenta to-brand-orange p-1 shadow-2xl mb-4">
-                    <div class="w-full h-full rounded-full bg-brand-dark flex items-center justify-center text-4xl">
-                      🎸
-                    </div>
+                <!-- Info bas -->
+                <div class="z-20 p-4 space-y-3">
+                  <div>
+                    <h3 class="font-display font-black text-3xl text-white">Alexandre Herbin</h3>
+                    <p class="text-sm text-brand-orange font-mono font-bold">blvckbeats808 • Herbo</p>
                   </div>
-                  <h3 class="font-display font-black text-3xl text-white">Alexandre Herbin</h3>
-                  <p class="text-sm text-brand-orange font-mono font-bold mt-1">blvckbeats808 • Herbo</p>
-                </div>
 
-                <div class="grid grid-cols-2 gap-3 text-center text-xs font-mono border-t border-zinc-700 pt-4">
-                  <div class="bg-black/60 p-3 rounded-xl border border-zinc-800">
-                    <span class="text-brand-magenta font-black block text-base">26 ans</span>
-                    <span class="text-xs text-zinc-300 font-medium">Dynamisme & Feeling</span>
-                  </div>
-                  <div class="bg-black/60 p-3 rounded-xl border border-zinc-800">
-                    <span class="text-brand-orange font-black block text-base">100% Pro</span>
-                    <span class="text-xs text-zinc-300 font-medium">Mix & Pédagogie Active</span>
+                  <div class="grid grid-cols-2 gap-2 text-center text-xs font-mono pt-2 border-t border-zinc-700/80">
+                    <div class="bg-black/70 backdrop-blur-sm p-2.5 rounded-xl border border-zinc-800">
+                      <span class="text-brand-magenta font-black block text-sm">26 ans • 14 ans Guitare</span>
+                      <span class="text-[11px] text-zinc-300">Dynamisme & Pédagogie</span>
+                    </div>
+                    <div class="bg-black/70 backdrop-blur-sm p-2.5 rounded-xl border border-zinc-800">
+                      <span class="text-brand-orange font-black block text-sm">100% Pro Studio</span>
+                      <span class="text-[11px] text-zinc-300">Mix & Sortie Spotify</span>
+                    </div>
                   </div>
                 </div>
               </div>
