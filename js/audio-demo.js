@@ -14,15 +14,15 @@ class AudioComparisonPlayer {
     this.tracks = {
       smartphone: {
         title: 'To The Star (Prise Brute • Raw)',
-        src: 'assets/audio/smartphone-raw.m4a',
-        fallback: 'assets/audio/smartphone-raw.wav',
+        src: '/assets/audio/smartphone-raw.m4a',
+        fallback: '/assets/audio/smartphone-raw.wav',
         badgeHtml: '<svg class="w-3.5 h-3.5 stroke-current fill-none shrink-0" stroke-width="2" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg><span><strong>Prise Brute</strong> (To The Star • Raw)</span>',
         badgeClass: 'text-xs px-3 py-1.5 rounded-full bg-zinc-800/80 text-zinc-300 border border-zinc-700 font-mono inline-flex items-center gap-1.5'
       },
       studio: {
         title: 'Flying Away (Mix & Master • blvckbeats808)',
-        src: 'assets/audio/studio-final.m4a',
-        fallback: 'assets/audio/studio-final.wav',
+        src: '/assets/audio/studio-final.m4a',
+        fallback: '/assets/audio/studio-final.wav',
         badgeHtml: '<svg class="w-3.5 h-3.5 fill-current text-pink-400 shrink-0" viewBox="0 0 24 24"><path d="M12 2l2.4 7.2h7.6l-6.1 4.5 2.3 7.1-6.2-4.5-6.2 4.5 2.3-7.1-6.1-4.5h7.6z"/></svg><span><strong>Mix Studio Pro</strong> (Flying Away • Master)</span>',
         badgeClass: 'text-xs px-3 py-1.5 rounded-full bg-gradient-to-r from-pink-500/20 to-orange-500/20 text-pink-300 border border-pink-500/40 font-mono inline-flex items-center gap-1.5'
       }
@@ -206,16 +206,24 @@ class AudioComparisonPlayer {
     this.stopVisualizer();
   }
 
-  setMode(mode) {
-    if (this.currentMode === mode) return;
+  setMode(mode, triggerPlay = true) {
+    const isSameMode = (this.currentMode === mode);
     this.currentMode = mode;
 
     this.updateModeUI(mode);
 
     if (!this.player) return;
 
+    if (isSameMode) {
+      if (this.player.paused && triggerPlay) {
+        this.play();
+      }
+      return;
+    }
+
     const savedTime = this.player.currentTime || 0;
     const wasPlaying = !this.player.paused;
+    const shouldPlay = wasPlaying || triggerPlay;
 
     const track = this.tracks[mode];
     const canM4A = this.player.canPlayType && (this.player.canPlayType('audio/mp4') || this.player.canPlayType('audio/x-m4a'));
@@ -235,7 +243,7 @@ class AudioComparisonPlayer {
           this.player.currentTime = savedTime % this.player.duration;
         }
       } catch (e) {}
-      if (wasPlaying) {
+      if (shouldPlay) {
         this.player.play().catch(e => console.warn(e));
       }
       this.player.removeEventListener('loadedmetadata', onLoaded);
@@ -244,7 +252,7 @@ class AudioComparisonPlayer {
     this.player.addEventListener('loadedmetadata', onLoaded);
     this.player.load();
 
-    if (wasPlaying && this.player.readyState >= 1) {
+    if (shouldPlay) {
       this.player.play().catch(e => console.warn(e));
     }
   }
