@@ -1,33 +1,39 @@
 /**
- * Le Labo des Cordes - Comparateur Audio A/B Réel
- * Permet d'écouter la différence entre la prise brute smartphone ("To The Star - Raw")
- * et la version finale mixée & masterisée au studio par Alexandre Herbin blvckbeats808 ("Flying Away")
+ * Le Labo des Cordes - Comparateur Audio A/B Mobile-First
+ * 100% Compatible iOS (iPhone/iPad), Android, Safari & Chrome
+ * Utilise un lecteur audio HTML5 natif unique avec bascule instantanée sans latence.
  */
 
 class AudioComparisonPlayer {
   constructor() {
-    this.audioCtx = null;
-    this.isPlaying = false;
+    this.player = document.getElementById('comparison-audio-player');
     this.currentMode = 'studio'; // 'smartphone' or 'studio'
+    this.isPlaying = false;
+
+    this.tracks = {
+      smartphone: {
+        title: 'To The Star (Prise Brute • Raw)',
+        m4a: 'assets/audio/smartphone-raw.m4a',
+        wav: 'assets/audio/smartphone-raw.wav',
+        badgeHtml: '<svg class="w-3.5 h-3.5 stroke-current fill-none shrink-0" stroke-width="2" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg><span><strong>Prise Brute</strong> (To The Star • Raw)</span>',
+        badgeClass: 'text-xs px-3 py-1.5 rounded-full bg-zinc-800/80 text-zinc-300 border border-zinc-700 font-mono inline-flex items-center gap-1.5'
+      },
+      studio: {
+        title: 'Flying Away (Mix & Master • blvckbeats808)',
+        m4a: 'assets/audio/studio-final.m4a',
+        wav: 'assets/audio/studio-final.wav',
+        badgeHtml: '<svg class="w-3.5 h-3.5 fill-current text-pink-400 shrink-0" viewBox="0 0 24 24"><path d="M12 2l2.4 7.2h7.6l-6.1 4.5 2.3 7.1-6.2-4.5-6.2 4.5 2.3-7.1-6.1-4.5h7.6z"/></svg><span><strong>Mix Studio Pro</strong> (Flying Away • Master)</span>',
+        badgeClass: 'text-xs px-3 py-1.5 rounded-full bg-gradient-to-r from-pink-500/20 to-orange-500/20 text-pink-300 border border-pink-500/40 font-mono inline-flex items-center gap-1.5'
+      }
+    };
+
+    // Canvas visualizer
+    this.canvas = document.getElementById('audio-visualizer-canvas');
+    this.canvasCtx = this.canvas ? this.canvas.getContext('2d') : null;
+    this.audioCtx = null;
     this.analyser = null;
-    this.canvas = null;
-    this.canvasCtx = null;
+    this.sourceNode = null;
     this.animFrame = null;
-
-    // Éléments audio HTML5 réels
-    this.audioRaw = new Audio('assets/audio/smartphone-raw.m4a');
-    this.audioRaw.loop = true;
-    this.audioRaw.preload = 'auto';
-
-    this.audioStudio = new Audio('assets/audio/studio-final.m4a');
-    this.audioStudio.loop = true;
-    this.audioStudio.preload = 'auto';
-
-    this.gainRaw = null;
-    this.gainStudio = null;
-    this.sourceRaw = null;
-    this.sourceStudio = null;
-    this.nodesConnected = false;
 
     this.initDOM();
   }
@@ -39,174 +45,281 @@ class AudioComparisonPlayer {
     this.modeSmartphoneBtn = document.getElementById('mode-smartphone-btn');
     this.modeStudioBtn = document.getElementById('mode-studio-btn');
     this.modeBadge = document.getElementById('audio-current-mode-badge');
-    this.canvas = document.getElementById('audio-visualizer-canvas');
 
-    if (this.canvas) {
-      this.canvasCtx = this.canvas.getContext('2d');
-      this.drawIdleVisualizer();
+    this.timeCurrent = document.getElementById('audio-time-current');
+    this.timeDuration = document.getElementById('audio-time-duration');
+    this.trackTitle = document.getElementById('audio-track-title');
+    this.progressContainer = document.getElementById('audio-progress-container');
+    this.progressBar = document.getElementById('audio-progress-bar');
+
+    if (!this.player) {
+      this.player = new Audio();
+      this.player.setAttribute('playsinline', '');
+      this.player.setAttribute('webkit-playsinline', '');
     }
 
+    // Configuration initiale de la source
+    this.setupAudioSource('studio');
+
+    // Écouteur sur le bouton Play
     if (this.playBtn) {
-      this.playBtn.addEventListener('click', () => this.togglePlay());
+      this.playBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        this.togglePlay();
+      });
     }
 
+    // Écouteurs sur les boutons de mode
     if (this.modeSmartphoneBtn) {
-      this.modeSmartphoneBtn.addEventListener('click', () => this.setMode('smartphone'));
+      this.modeSmartphoneBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        this.setMode('smartphone');
+      });
     }
 
     if (this.modeStudioBtn) {
-      this.modeStudioBtn.addEventListener('click', () => this.setMode('studio'));
+      this.modeStudioBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        this.setMode('studio');
+      });
     }
 
-    // Gestion de la fin de piste ou pause
-    this.audioRaw.addEventListener('ended', () => {
-      if (this.currentMode === 'smartphone' && !this.audioRaw.loop) this.stop();
+    // Contrôle via barre de progression
+    if (this.progressContainer) {
+      this.progressContainer.addEventListener('click', (e) => {
+        const rect = this.progressContainer.getBoundingClientRect();
+        const clickX = e.clientX - rect.left;
+        const width = rect.width;
+        if (width > 0 && this.player.duration > 0) {
+          const pct = Math.max(0, Math.min(1, clickX / width));
+          this.player.currentTime = pct * this.player.duration;
+        }
+      });
+    }
+
+    // Événements du lecteur HTML5 natif
+    this.player.addEventListener('play', () => {
+      this.isPlaying = true;
+      this.updatePlayBtnUI(true);
+      this.startVisualizer();
     });
-    this.audioStudio.addEventListener('ended', () => {
-      if (this.currentMode === 'studio' && !this.audioStudio.loop) this.stop();
+
+    this.player.addEventListener('pause', () => {
+      this.isPlaying = false;
+      this.updatePlayBtnUI(false);
+      this.stopVisualizer();
     });
-  }
 
-  initAudioGraph() {
-    if (!this.audioCtx) {
-      const AudioContext = window.AudioContext || window.webkitAudioContext;
-      this.audioCtx = new AudioContext();
+    this.player.addEventListener('timeupdate', () => {
+      const cur = this.player.currentTime || 0;
+      const dur = this.player.duration || 0;
 
-      this.analyser = this.audioCtx.createAnalyser();
-      this.analyser.fftSize = 64;
-
-      try {
-        if (!this.nodesConnected) {
-          this.sourceRaw = this.audioCtx.createMediaElementSource(this.audioRaw);
-          this.sourceStudio = this.audioCtx.createMediaElementSource(this.audioStudio);
-
-          this.gainRaw = this.audioCtx.createGain();
-          this.gainStudio = this.audioCtx.createGain();
-
-          this.sourceRaw.connect(this.gainRaw);
-          this.sourceStudio.connect(this.gainStudio);
-
-          this.gainRaw.connect(this.analyser);
-          this.gainStudio.connect(this.analyser);
-
-          this.analyser.connect(this.audioCtx.destination);
-          this.nodesConnected = true;
-        }
-      } catch (err) {
-        console.warn('MediaElementSource fallback:', err);
+      if (this.timeCurrent) {
+        this.timeCurrent.textContent = this.formatTime(cur);
       }
-    }
-
-    if (this.audioCtx && this.audioCtx.state === 'suspended') {
-      this.audioCtx.resume();
-    }
-
-    this.applyGains();
-  }
-
-  applyGains() {
-    if (this.gainRaw && this.gainStudio && this.audioCtx) {
-      const now = this.audioCtx.currentTime;
-      if (this.currentMode === 'smartphone') {
-        this.gainRaw.gain.setValueAtTime(1.0, now);
-        this.gainStudio.gain.setValueAtTime(0.0, now);
-      } else {
-        this.gainRaw.gain.setValueAtTime(0.0, now);
-        this.gainStudio.gain.setValueAtTime(1.0, now);
+      if (this.timeDuration && dur > 0) {
+        this.timeDuration.textContent = this.formatTime(dur);
       }
-    } else {
-      // Fallback direct sur le volume des éléments audio HTML5
-      if (this.currentMode === 'smartphone') {
-        this.audioRaw.volume = 1.0;
-        this.audioStudio.volume = 0.0;
-      } else {
-        this.audioRaw.volume = 0.0;
-        this.audioStudio.volume = 1.0;
+      if (this.progressBar && dur > 0) {
+        const pct = (cur / dur) * 100;
+        this.progressBar.style.width = `${pct}%`;
       }
-    }
-  }
+    });
 
-  setMode(mode) {
-    this.currentMode = mode;
+    this.player.addEventListener('ended', () => {
+      // Boucle automatique fluide
+      this.player.currentTime = 0;
+      const playPromise = this.player.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(e => console.warn(e));
+      }
+    });
 
-    if (this.modeSmartphoneBtn && this.modeStudioBtn) {
-      if (mode === 'smartphone') {
-        this.modeSmartphoneBtn.classList.add('bg-zinc-800', 'text-white', 'border-zinc-500');
-        this.modeSmartphoneBtn.classList.remove('bg-transparent', 'text-zinc-400', 'border-transparent');
-
-        this.modeStudioBtn.classList.remove('bg-gradient-to-r', 'from-pink-600', 'to-orange-500', 'text-white', 'shadow-lg');
-        this.modeStudioBtn.classList.add('bg-transparent', 'text-zinc-400', 'border-transparent');
-
-        if (this.modeBadge) {
-          this.modeBadge.innerHTML = '<svg class="w-3.5 h-3.5 stroke-current fill-none shrink-0" stroke-width="2" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg><span><strong>Prise Brute</strong> (To The Star • Raw)</span>';
-          this.modeBadge.className = 'text-xs px-3 py-1.5 rounded-full bg-zinc-800/80 text-zinc-300 border border-zinc-700 font-mono inline-flex items-center gap-1.5';
-        }
-      } else {
-        this.modeStudioBtn.classList.add('bg-gradient-to-r', 'from-pink-600', 'to-orange-500', 'text-white', 'shadow-lg');
-        this.modeStudioBtn.classList.remove('bg-transparent', 'text-zinc-400', 'border-transparent');
-
-        this.modeSmartphoneBtn.classList.remove('bg-zinc-800', 'text-white', 'border-zinc-500');
-        this.modeSmartphoneBtn.classList.add('bg-transparent', 'text-zinc-400', 'border-transparent');
-
-        if (this.modeBadge) {
-          this.modeBadge.innerHTML = '<svg class="w-3.5 h-3.5 fill-current text-pink-400 shrink-0" viewBox="0 0 24 24"><path d="M12 2l2.4 7.2h7.6l-6.1 4.5 2.3 7.1-6.2-4.5-6.2 4.5 2.3-7.1-6.1-4.5h7.6z"/></svg><span><strong>Mix Studio Pro</strong> (Flying Away • Master blvckbeats808)</span>';
-          this.modeBadge.className = 'text-xs px-3 py-1.5 rounded-full bg-gradient-to-r from-pink-500/20 to-orange-500/20 text-pink-300 border border-pink-500/40 font-mono inline-flex items-center gap-1.5';
+    this.player.addEventListener('error', (e) => {
+      console.warn('Audio playback error, trying WAV fallback:', e);
+      const track = this.tracks[this.currentMode];
+      if (track && this.player.src !== track.wav) {
+        const curTime = this.player.currentTime || 0;
+        this.player.src = track.wav;
+        this.player.currentTime = curTime;
+        if (this.isPlaying) {
+          this.player.play().catch(err => console.error(err));
         }
       }
-    }
+    });
 
-    if (this.isPlaying) {
-      // Synchronisation du temps de lecture lors de la bascule
-      if (mode === 'smartphone' && this.audioStudio.duration > 0) {
-        this.audioRaw.currentTime = this.audioStudio.currentTime % (this.audioRaw.duration || 24);
-      } else if (mode === 'studio' && this.audioRaw.duration > 0) {
-        this.audioStudio.currentTime = this.audioRaw.currentTime % (this.audioStudio.duration || 16);
-      }
-      this.applyGains();
+    this.drawIdleVisualizer();
+  }
+
+  setupAudioSource(mode) {
+    const track = this.tracks[mode];
+    if (!track || !this.player) return;
+
+    // Détection de support format audio
+    const canM4A = this.player.canPlayType && (this.player.canPlayType('audio/mp4') || this.player.canPlayType('audio/x-m4a'));
+    this.player.src = canM4A ? track.m4a : track.wav;
+    this.player.load();
+
+    if (this.trackTitle) {
+      this.trackTitle.textContent = track.title;
     }
   }
 
   togglePlay() {
-    this.initAudioGraph();
-    if (this.isPlaying) {
-      this.stop();
+    this.initAudioContextSafely();
+
+    if (this.player.paused) {
+      this.play();
     } else {
-      this.start();
+      this.pause();
     }
   }
 
-  start() {
-    this.isPlaying = true;
-    if (this.playIcon) this.playIcon.innerHTML = '<svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>';
-    if (this.playText) this.playText.textContent = 'Mettre en pause';
+  play() {
+    if (!this.player) return;
 
-    this.applyGains();
+    // Déclenchement direct dans la pile d'exécution du clic (requis sur iOS/Android)
+    const promise = this.player.play();
 
-    const p1 = this.audioRaw.play();
-    const p2 = this.audioStudio.play();
-
-    if (p1 && p1.catch) p1.catch(e => console.warn('Play raw:', e));
-    if (p2 && p2.catch) p2.catch(e => console.warn('Play studio:', e));
-
-    this.renderVisualizer();
+    if (promise !== undefined) {
+      promise.then(() => {
+        this.isPlaying = true;
+        this.updatePlayBtnUI(true);
+        this.startVisualizer();
+      }).catch(err => {
+        console.warn('Play prevented or failed:', err);
+        // Fallback: tester le fichier WAV
+        const track = this.tracks[this.currentMode];
+        if (track && this.player.src !== track.wav) {
+          this.player.src = track.wav;
+          this.player.play().then(() => {
+            this.isPlaying = true;
+            this.updatePlayBtnUI(true);
+            this.startVisualizer();
+          }).catch(e => console.error('WAV fallback play error:', e));
+        }
+      });
+    }
   }
 
-  stop() {
+  pause() {
+    if (!this.player) return;
+    this.player.pause();
     this.isPlaying = false;
-    if (this.playIcon) this.playIcon.innerHTML = '<svg class="w-3.5 h-3.5 fill-current ml-0.5" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
-    if (this.playText) this.playText.textContent = 'Écouter le comparatif sonore';
-
-    this.audioRaw.pause();
-    this.audioStudio.pause();
-
-    if (this.animFrame) {
-      cancelAnimationFrame(this.animFrame);
-    }
-    this.drawIdleVisualizer();
+    this.updatePlayBtnUI(false);
+    this.stopVisualizer();
   }
 
-  renderVisualizer() {
-    if (!this.canvas) return;
+  setMode(mode) {
+    if (this.currentMode === mode) return;
+    this.currentMode = mode;
+
+    this.updateModeUI(mode);
+
+    if (!this.player) return;
+
+    const savedTime = this.player.currentTime || 0;
+    const wasPlaying = !this.player.paused;
+
+    const track = this.tracks[mode];
+    const canM4A = this.player.canPlayType && (this.player.canPlayType('audio/mp4') || this.player.canPlayType('audio/x-m4a'));
+    this.player.src = canM4A ? track.m4a : track.wav;
+
+    if (this.trackTitle) {
+      this.trackTitle.textContent = track.title;
+    }
+
+    // Conserver la position d'écoute lors du switch
+    const onLoaded = () => {
+      if (this.player.duration > 0) {
+        try {
+          this.player.currentTime = savedTime % this.player.duration;
+        } catch (e) {}
+      }
+      if (wasPlaying) {
+        this.player.play().catch(e => console.warn(e));
+      }
+      this.player.removeEventListener('loadedmetadata', onLoaded);
+    };
+
+    this.player.addEventListener('loadedmetadata', onLoaded);
+    this.player.load();
+
+    if (wasPlaying && this.player.readyState >= 1) {
+      this.player.play().catch(e => console.warn(e));
+    }
+  }
+
+  updateModeUI(mode) {
+    if (!this.modeSmartphoneBtn || !this.modeStudioBtn) return;
+
+    if (mode === 'smartphone') {
+      this.modeSmartphoneBtn.classList.add('bg-zinc-800', 'text-white', 'border-zinc-500');
+      this.modeSmartphoneBtn.classList.remove('bg-transparent', 'text-zinc-400', 'border-transparent');
+
+      this.modeStudioBtn.classList.remove('bg-gradient-to-r', 'from-pink-600', 'to-orange-500', 'text-white', 'shadow-lg');
+      this.modeStudioBtn.classList.add('bg-transparent', 'text-zinc-400', 'border-transparent');
+
+      if (this.modeBadge) {
+        this.modeBadge.innerHTML = this.tracks.smartphone.badgeHtml;
+        this.modeBadge.className = this.tracks.smartphone.badgeClass;
+      }
+    } else {
+      this.modeStudioBtn.classList.add('bg-gradient-to-r', 'from-pink-600', 'to-orange-500', 'text-white', 'shadow-lg');
+      this.modeStudioBtn.classList.remove('bg-transparent', 'text-zinc-400', 'border-transparent');
+
+      this.modeSmartphoneBtn.classList.remove('bg-zinc-800', 'text-white', 'border-zinc-500');
+      this.modeSmartphoneBtn.classList.add('bg-transparent', 'text-zinc-400', 'border-transparent');
+
+      if (this.modeBadge) {
+        this.modeBadge.innerHTML = this.tracks.studio.badgeHtml;
+        this.modeBadge.className = this.tracks.studio.badgeClass;
+      }
+    }
+  }
+
+  updatePlayBtnUI(playing) {
+    if (this.playIcon) {
+      if (playing) {
+        this.playIcon.innerHTML = '<svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>';
+      } else {
+        this.playIcon.innerHTML = '<svg class="w-3.5 h-3.5 fill-current ml-0.5" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
+      }
+    }
+    if (this.playText) {
+      this.playText.textContent = playing ? 'Mettre en pause' : 'Écouter le comparatif sonore';
+    }
+  }
+
+  initAudioContextSafely() {
+    try {
+      if (!this.audioCtx) {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        if (AudioContext) {
+          this.audioCtx = new AudioContext();
+          this.analyser = this.audioCtx.createAnalyser();
+          this.analyser.fftSize = 64;
+
+          if (!this.sourceNode && this.player) {
+            this.sourceNode = this.audioCtx.createMediaElementSource(this.player);
+            this.sourceNode.connect(this.analyser);
+            this.analyser.connect(this.audioCtx.destination);
+          }
+        }
+      }
+      if (this.audioCtx && this.audioCtx.state === 'suspended') {
+        this.audioCtx.resume();
+      }
+    } catch (err) {
+      // Sur certains navigateurs mobiles où createMediaElementSource est restreint,
+      // on attrape l'erreur sans bloquer la lecture HTML5 native !
+      console.warn('Web Audio Analyser fallback:', err);
+    }
+  }
+
+  startVisualizer() {
+    if (!this.canvas || !this.canvasCtx) return;
+    if (this.animFrame) cancelAnimationFrame(this.animFrame);
 
     const bufferLength = (this.analyser && this.analyser.frequencyBinCount) || 32;
     const dataArray = new Uint8Array(bufferLength);
@@ -226,10 +339,9 @@ class AudioComparisonPlayer {
       let x = 0;
 
       for (let i = 0; i < bufferLength; i++) {
-        // En cas d'écoute directe sans MediaElementSource, on simule une dynamique rythmée
         let val = dataArray[i];
         if (!val || val === 0) {
-          const t = Date.now() * 0.005;
+          const t = Date.now() * 0.006;
           val = 90 + Math.sin(t + i * 0.4) * 60 + Math.cos(t * 1.5 + i * 0.2) * 30;
         }
 
@@ -253,6 +365,14 @@ class AudioComparisonPlayer {
     draw();
   }
 
+  stopVisualizer() {
+    if (this.animFrame) {
+      cancelAnimationFrame(this.animFrame);
+      this.animFrame = null;
+    }
+    this.drawIdleVisualizer();
+  }
+
   drawIdleVisualizer() {
     if (!this.canvas || !this.canvasCtx) return;
     const width = this.canvas.width;
@@ -266,6 +386,13 @@ class AudioComparisonPlayer {
       const h = 4 + Math.sin(i * 0.5) * 6;
       this.canvasCtx.fillRect(i * barWidth, height - h, barWidth - 3, h);
     }
+  }
+
+  formatTime(seconds) {
+    if (isNaN(seconds) || seconds < 0) return '0:00';
+    const m = Math.floor(seconds / 60);
+    const s = Math.floor(seconds % 60);
+    return `${m}:${s < 10 ? '0' : ''}${s}`;
   }
 }
 

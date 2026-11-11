@@ -678,10 +678,28 @@
           </div>
 
           <!-- Visualiseur Audio Canvas -->
-          <div class="bg-black/60 rounded-2xl p-4 border border-zinc-800/80 mb-6 flex flex-col items-center justify-center relative overflow-hidden">
+          <div class="bg-black/60 rounded-2xl p-4 border border-zinc-800/80 mb-4 flex flex-col items-center justify-center relative overflow-hidden">
             <canvas id="audio-visualizer-canvas" width="600" height="120" class="w-full h-28"></canvas>
             <div class="text-[10px] font-mono text-zinc-400 uppercase tracking-widest mt-2">
               Analyseur de Spectre Fréquentiel en Temps Réel
+            </div>
+          </div>
+
+          <!-- Lecteur Audio HTML5 Standard Mobile-First avec fallback -->
+          <audio id="comparison-audio-player" playsinline webkit-playsinline preload="auto">
+            <source src="assets/audio/studio-final.m4a" type="audio/mp4">
+            <source src="assets/audio/studio-final.wav" type="audio/wav">
+          </audio>
+
+          <!-- Barre de progression et temps -->
+          <div class="mb-5 bg-black/40 p-3 rounded-2xl border border-zinc-800">
+            <div class="flex items-center justify-between text-xs font-mono text-zinc-300 mb-1.5 px-1">
+              <span id="audio-time-current" class="text-zinc-400">0:00</span>
+              <span id="audio-track-title" class="font-bold text-white truncate max-w-[200px] sm:max-w-xs">Flying Away (Master)</span>
+              <span id="audio-time-duration" class="text-zinc-400">0:16</span>
+            </div>
+            <div id="audio-progress-container" class="w-full bg-zinc-800 rounded-full h-2.5 cursor-pointer relative overflow-hidden">
+              <div id="audio-progress-bar" class="bg-gradient-to-r from-pink-500 to-orange-500 h-full w-0 rounded-full transition-all duration-100"></div>
             </div>
           </div>
 
