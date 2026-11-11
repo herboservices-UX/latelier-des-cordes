@@ -58,6 +58,23 @@ Tu peux déployer ce site en 2 minutes sur :
 
 ---
 
+## 📸 Comment ajouter ta vraie photo
+Pour afficher ta photo sur le site (Hero header et carte profil) :
+1. Prends ta photo préférée (face caméra, en studio, guitare en main ou depuis ton Instagram).
+2. Nomme-la `alexandre.jpg`.
+3. Dépose-la dans le dossier `assets/` (chemin : `assets/alexandre.jpg`).
+Le site la détectera et l'affichera immédiatement avec un filtre studio esthétique ! Si le fichier n'est pas présent, un fallback graphique vectoriel prend le relais sans casser l'affichage.
+
+---
+
+## 🌐 Liens & Profils Officiels Intégrés
+- **Instagram :** [instagram.com/__alexblacki](https://www.instagram.com/__alexblacki/)
+- **YouTube (Prods guitare & beats) :** [youtube.com/@alkapoze](https://www.youtube.com/@alkapoze)
+- **Spotify (Herbo) :** [Titre officiel en écoute intégrée](https://open.spotify.com/intl-fr/track/5J2Dx5tuupjgsaWCSnJFGn?si=00b9445e3521482c)
+- **Placement Nashville (USA) :** [Titre officiel sorti aux USA](https://youtu.be/925-MVwqzmA?list=RD925-MVwqzmA) & [Instrumentale guitare vendue par blvckbeats808](https://www.youtube.com/watch?v=lqV26trVM90&list=RDlqV26trVM90&start_radio=1)
+
+---
+
 ## 📞 Coordonnées & Configuration
 - **WhatsApp :** `06 16 39 26 58`
 - **Email :** `blvckbeats808@gmail.com`
