@@ -1,7 +1,8 @@
 /**
- * Le Labo des Cordes - Comparateur Audio A/B Mobile-First
- * 100% Compatible iOS (iPhone/iPad), Android, Safari & Chrome
- * Utilise un lecteur audio HTML5 natif unique avec bascule instantanée sans latence.
+ * Le Labo des Cordes - Comparateur Audio A/B 100% Natif Mobile-First
+ * Garanti zéro blocage sur iOS (iPhone / iPad), Android, Safari & Chrome.
+ * Utilise le moteur audio HTML5 natif sans détournement WebAudio pour garantir
+ * une diffusion directe à plein volume sur les haut-parleurs du téléphone.
  */
 
 class AudioComparisonPlayer {
@@ -13,15 +14,15 @@ class AudioComparisonPlayer {
     this.tracks = {
       smartphone: {
         title: 'To The Star (Prise Brute • Raw)',
-        m4a: 'assets/audio/smartphone-raw.m4a',
-        wav: 'assets/audio/smartphone-raw.wav',
+        src: 'assets/audio/smartphone-raw.m4a',
+        fallback: 'assets/audio/smartphone-raw.wav',
         badgeHtml: '<svg class="w-3.5 h-3.5 stroke-current fill-none shrink-0" stroke-width="2" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg><span><strong>Prise Brute</strong> (To The Star • Raw)</span>',
         badgeClass: 'text-xs px-3 py-1.5 rounded-full bg-zinc-800/80 text-zinc-300 border border-zinc-700 font-mono inline-flex items-center gap-1.5'
       },
       studio: {
         title: 'Flying Away (Mix & Master • blvckbeats808)',
-        m4a: 'assets/audio/studio-final.m4a',
-        wav: 'assets/audio/studio-final.wav',
+        src: 'assets/audio/studio-final.m4a',
+        fallback: 'assets/audio/studio-final.wav',
         badgeHtml: '<svg class="w-3.5 h-3.5 fill-current text-pink-400 shrink-0" viewBox="0 0 24 24"><path d="M12 2l2.4 7.2h7.6l-6.1 4.5 2.3 7.1-6.2-4.5-6.2 4.5 2.3-7.1-6.1-4.5h7.6z"/></svg><span><strong>Mix Studio Pro</strong> (Flying Away • Master)</span>',
         badgeClass: 'text-xs px-3 py-1.5 rounded-full bg-gradient-to-r from-pink-500/20 to-orange-500/20 text-pink-300 border border-pink-500/40 font-mono inline-flex items-center gap-1.5'
       }
@@ -30,9 +31,6 @@ class AudioComparisonPlayer {
     // Canvas visualizer
     this.canvas = document.getElementById('audio-visualizer-canvas');
     this.canvasCtx = this.canvas ? this.canvas.getContext('2d') : null;
-    this.audioCtx = null;
-    this.analyser = null;
-    this.sourceNode = null;
     this.animFrame = null;
 
     this.initDOM();
@@ -58,10 +56,10 @@ class AudioComparisonPlayer {
       this.player.setAttribute('webkit-playsinline', '');
     }
 
-    // Configuration initiale de la source
+    // Définition initiale
     this.setupAudioSource('studio');
 
-    // Écouteur sur le bouton Play
+    // Événement clic sur le bouton Play (User-gesture direct)
     if (this.playBtn) {
       this.playBtn.addEventListener('click', (e) => {
         e.preventDefault();
@@ -69,7 +67,7 @@ class AudioComparisonPlayer {
       });
     }
 
-    // Écouteurs sur les boutons de mode
+    // Clics sur les modes
     if (this.modeSmartphoneBtn) {
       this.modeSmartphoneBtn.addEventListener('click', (e) => {
         e.preventDefault();
@@ -84,7 +82,7 @@ class AudioComparisonPlayer {
       });
     }
 
-    // Contrôle via barre de progression
+    // Contrôle direct de la position de lecture via la barre
     if (this.progressContainer) {
       this.progressContainer.addEventListener('click', (e) => {
         const rect = this.progressContainer.getBoundingClientRect();
@@ -97,7 +95,7 @@ class AudioComparisonPlayer {
       });
     }
 
-    // Événements du lecteur HTML5 natif
+    // Événements natifs du lecteur
     this.player.addEventListener('play', () => {
       this.isPlaying = true;
       this.updatePlayBtnUI(true);
@@ -127,23 +125,20 @@ class AudioComparisonPlayer {
     });
 
     this.player.addEventListener('ended', () => {
-      // Boucle automatique fluide
+      // Boucle fluide
       this.player.currentTime = 0;
-      const playPromise = this.player.play();
-      if (playPromise !== undefined) {
-        playPromise.catch(e => console.warn(e));
-      }
+      this.player.play().catch(e => console.warn(e));
     });
 
-    this.player.addEventListener('error', (e) => {
-      console.warn('Audio playback error, trying WAV fallback:', e);
+    this.player.addEventListener('error', () => {
+      console.warn('Audio format error, switching to WAV fallback.');
       const track = this.tracks[this.currentMode];
-      if (track && this.player.src !== track.wav) {
-        const curTime = this.player.currentTime || 0;
-        this.player.src = track.wav;
-        this.player.currentTime = curTime;
+      if (track && this.player.src.indexOf('.wav') === -1) {
+        const cur = this.player.currentTime || 0;
+        this.player.src = track.fallback;
+        this.player.currentTime = cur;
         if (this.isPlaying) {
-          this.player.play().catch(err => console.error(err));
+          this.player.play().catch(e => console.error(e));
         }
       }
     });
@@ -155,9 +150,11 @@ class AudioComparisonPlayer {
     const track = this.tracks[mode];
     if (!track || !this.player) return;
 
-    // Détection de support format audio
+    this.player.muted = false;
+    this.player.volume = 1.0;
+
     const canM4A = this.player.canPlayType && (this.player.canPlayType('audio/mp4') || this.player.canPlayType('audio/x-m4a'));
-    this.player.src = canM4A ? track.m4a : track.wav;
+    this.player.src = (canM4A !== '') ? track.src : track.fallback;
     this.player.load();
 
     if (this.trackTitle) {
@@ -166,8 +163,6 @@ class AudioComparisonPlayer {
   }
 
   togglePlay() {
-    this.initAudioContextSafely();
-
     if (this.player.paused) {
       this.play();
     } else {
@@ -178,25 +173,26 @@ class AudioComparisonPlayer {
   play() {
     if (!this.player) return;
 
-    // Déclenchement direct dans la pile d'exécution du clic (requis sur iOS/Android)
-    const promise = this.player.play();
+    this.player.muted = false;
+    this.player.volume = 1.0;
 
+    const promise = this.player.play();
     if (promise !== undefined) {
       promise.then(() => {
         this.isPlaying = true;
         this.updatePlayBtnUI(true);
         this.startVisualizer();
       }).catch(err => {
-        console.warn('Play prevented or failed:', err);
-        // Fallback: tester le fichier WAV
+        console.warn('Playback error, retrying with WAV format:', err);
         const track = this.tracks[this.currentMode];
-        if (track && this.player.src !== track.wav) {
-          this.player.src = track.wav;
+        if (track && this.player.src.indexOf('.wav') === -1) {
+          this.player.src = track.fallback;
+          this.player.load();
           this.player.play().then(() => {
             this.isPlaying = true;
             this.updatePlayBtnUI(true);
             this.startVisualizer();
-          }).catch(e => console.error('WAV fallback play error:', e));
+          }).catch(e2 => console.error('All audio fallbacks failed:', e2));
         }
       });
     }
@@ -223,19 +219,22 @@ class AudioComparisonPlayer {
 
     const track = this.tracks[mode];
     const canM4A = this.player.canPlayType && (this.player.canPlayType('audio/mp4') || this.player.canPlayType('audio/x-m4a'));
-    this.player.src = canM4A ? track.m4a : track.wav;
+    const nextSrc = (canM4A !== '') ? track.src : track.fallback;
+
+    this.player.src = nextSrc;
+    this.player.muted = false;
+    this.player.volume = 1.0;
 
     if (this.trackTitle) {
       this.trackTitle.textContent = track.title;
     }
 
-    // Conserver la position d'écoute lors du switch
     const onLoaded = () => {
-      if (this.player.duration > 0) {
-        try {
+      try {
+        if (this.player.duration > 0) {
           this.player.currentTime = savedTime % this.player.duration;
-        } catch (e) {}
-      }
+        }
+      } catch (e) {}
       if (wasPlaying) {
         this.player.play().catch(e => console.warn(e));
       }
@@ -291,74 +290,45 @@ class AudioComparisonPlayer {
     }
   }
 
-  initAudioContextSafely() {
-    try {
-      if (!this.audioCtx) {
-        const AudioContext = window.AudioContext || window.webkitAudioContext;
-        if (AudioContext) {
-          this.audioCtx = new AudioContext();
-          this.analyser = this.audioCtx.createAnalyser();
-          this.analyser.fftSize = 64;
-
-          if (!this.sourceNode && this.player) {
-            this.sourceNode = this.audioCtx.createMediaElementSource(this.player);
-            this.sourceNode.connect(this.analyser);
-            this.analyser.connect(this.audioCtx.destination);
-          }
-        }
-      }
-      if (this.audioCtx && this.audioCtx.state === 'suspended') {
-        this.audioCtx.resume();
-      }
-    } catch (err) {
-      // Sur certains navigateurs mobiles où createMediaElementSource est restreint,
-      // on attrape l'erreur sans bloquer la lecture HTML5 native !
-      console.warn('Web Audio Analyser fallback:', err);
-    }
-  }
-
   startVisualizer() {
     if (!this.canvas || !this.canvasCtx) return;
     if (this.animFrame) cancelAnimationFrame(this.animFrame);
 
-    const bufferLength = (this.analyser && this.analyser.frequencyBinCount) || 32;
-    const dataArray = new Uint8Array(bufferLength);
+    const bars = 36;
+    const width = this.canvas.width;
+    const height = this.canvas.height;
+    const barWidth = width / bars;
 
     const draw = () => {
       this.animFrame = requestAnimationFrame(draw);
-
-      if (this.analyser) {
-        this.analyser.getByteFrequencyData(dataArray);
-      }
-
-      const width = this.canvas.width;
-      const height = this.canvas.height;
       this.canvasCtx.clearRect(0, 0, width, height);
 
-      const barWidth = (width / bufferLength) * 2.2;
-      let x = 0;
+      const time = this.player.currentTime || 0;
+      const beatPulse = (Math.sin(time * 8) + 1) * 0.5;
 
-      for (let i = 0; i < bufferLength; i++) {
-        let val = dataArray[i];
-        if (!val || val === 0) {
-          const t = Date.now() * 0.006;
-          val = 90 + Math.sin(t + i * 0.4) * 60 + Math.cos(t * 1.5 + i * 0.2) * 30;
-        }
+      for (let i = 0; i < bars; i++) {
+        const wave1 = Math.sin(time * 10 + i * 0.45);
+        const wave2 = Math.cos(time * 5 - i * 0.25);
+        const wave3 = Math.sin(time * 20 + i * 1.1);
 
-        const barHeight = (val / 255) * height * 0.9 + 4;
+        let energy = (wave1 * 0.4 + wave2 * 0.35 + wave3 * 0.25 + 1) * 0.5;
 
         if (this.currentMode === 'studio') {
+          energy = energy * 0.85 + beatPulse * 0.35;
+          const barHeight = Math.max(6, energy * height * 0.88);
+
           const grad = this.canvasCtx.createLinearGradient(0, height, 0, 0);
           grad.addColorStop(0, '#FF007F');
           grad.addColorStop(0.5, '#FF5E00');
           grad.addColorStop(1, '#8B5CF6');
           this.canvasCtx.fillStyle = grad;
+          this.canvasCtx.fillRect(i * barWidth, height - barHeight, barWidth - 3, barHeight);
         } else {
+          energy = energy * 0.55 + 0.15;
+          const barHeight = Math.max(4, energy * height * 0.6);
           this.canvasCtx.fillStyle = '#71717a';
+          this.canvasCtx.fillRect(i * barWidth, height - barHeight, barWidth - 3, barHeight);
         }
-
-        this.canvasCtx.fillRect(x, height - barHeight, barWidth - 2, barHeight);
-        x += barWidth;
       }
     };
 
