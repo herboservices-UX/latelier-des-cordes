@@ -13,17 +13,17 @@ class AudioComparisonPlayer {
 
     this.tracks = {
       smartphone: {
-        title: 'To The Star (Prise Brute • Raw)',
+        title: 'To The Star (Enregistré au smartphone)',
         src: '/assets/audio/smartphone-raw.m4a',
         fallback: '/assets/audio/smartphone-raw.wav',
-        badgeHtml: '<svg class="w-3.5 h-3.5 stroke-current fill-none shrink-0" stroke-width="2" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg><span><strong>Prise Brute</strong> (To The Star • Raw)</span>',
+        badgeHtml: '<svg class="w-3.5 h-3.5 stroke-current fill-none shrink-0" stroke-width="2" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg><span><strong>Son Smartphone</strong> (To The Star)</span>',
         badgeClass: 'text-xs px-3 py-1.5 rounded-full bg-zinc-800/80 text-zinc-300 border border-zinc-700 font-mono inline-flex items-center gap-1.5'
       },
       studio: {
-        title: 'Flying Away (Mix & Master • blvckbeats808)',
+        title: 'Flying Away (Version Studio Pro • Prêt pour Spotify)',
         src: '/assets/audio/studio-final.m4a',
         fallback: '/assets/audio/studio-final.wav',
-        badgeHtml: '<svg class="w-3.5 h-3.5 fill-current text-pink-400 shrink-0" viewBox="0 0 24 24"><path d="M12 2l2.4 7.2h7.6l-6.1 4.5 2.3 7.1-6.2-4.5-6.2 4.5 2.3-7.1-6.1-4.5h7.6z"/></svg><span><strong>Mix Studio Pro</strong> (Flying Away • Master)</span>',
+        badgeHtml: '<svg class="w-3.5 h-3.5 fill-current text-pink-400 shrink-0" viewBox="0 0 24 24"><path d="M12 2l2.4 7.2h7.6l-6.1 4.5 2.3 7.1-6.2-4.5-6.2 4.5 2.3-7.1-6.1-4.5h7.6z"/></svg><span><strong>Résultat Studio Pro</strong> (Flying Away • Spotify)</span>',
         badgeClass: 'text-xs px-3 py-1.5 rounded-full bg-gradient-to-r from-pink-500/20 to-orange-500/20 text-pink-300 border border-pink-500/40 font-mono inline-flex items-center gap-1.5'
       }
     };
@@ -294,7 +294,7 @@ class AudioComparisonPlayer {
       }
     }
     if (this.playText) {
-      this.playText.textContent = playing ? 'Mettre en pause' : 'Écouter le comparatif sonore';
+      this.playText.textContent = playing ? 'Mettre en pause' : 'Écouter la différence';
     }
   }
 
